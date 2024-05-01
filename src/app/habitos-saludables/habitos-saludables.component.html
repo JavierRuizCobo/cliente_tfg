@@ -1,0 +1,34 @@
+<div class="container">
+  <button class="create-post-btn" (click)="mostrarModal()">Crear Post</button>
+    <h1>Posts sobre hábitos saludables</h1>
+    <ul>
+      @for (post of data; track post) {
+        <div class="post">
+          <h2>{{ post.title }}</h2>
+          <p>{{ post.text }}</p>
+        </div>
+        <button class="delete-post-btn" (click)="eliminarPost(post)">Eliminar</button>
+
+      <hr>
+      }
+    </ul>
+
+
+    <div class="modal" [class.show-modal]="modalVisible">
+      <div class="modal-content">
+        <span class="close" (click)="cerrarModal()">&times;</span>
+        <h2>Crear Post</h2>
+        <div>
+          <label for="postTitle">Título:</label>
+          <input type="text" id="postTitle" [(ngModel)]="newPost.title">
+        </div>
+        <div>
+          <label for="postContent">Contenido:</label>
+          <textarea id="postContent" [(ngModel)]="newPost.text"></textarea>
+        </div>
+        <button (click)="crearPost()">Crear</button>
+      </div>
+    </div>
+  </div>
+
+  
