@@ -1,6 +1,7 @@
 <div class="container">
-  <button class="create-post-btn" (click)="mostrarModal()">Crear Post</button>
     <h1>Posts sobre hábitos saludables</h1>
+  <button class="create-post-btn" (click)="mostrarModal()">Crear Post</button>
+
     <ul>
       @for (post of data; track post) {
         <div class="post">

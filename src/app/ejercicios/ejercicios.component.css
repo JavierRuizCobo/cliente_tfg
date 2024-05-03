@@ -1,0 +1,28 @@
+.container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 20px;
+  }
+  
+  .lista-ejercicios {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+  
+  .ejercicio {
+    border: 1px solid #ccc;
+    padding: 10px;
+    margin: 10px;
+    width: 300px; /* Ancho inicial de cada bloque */
+    cursor: pointer;
+  }
+  
+  /* Cambiamos el tamaño de los bloques dependiendo del tamaño de la pantalla */
+  @media screen and (max-width: 600px) {
+    .ejercicio {
+      width: calc(100% - 20px);
+    }
+  }
+  

@@ -1,0 +1,15 @@
+<div class="container">
+    <h2>Lista de Ejercicios</h2>
+
+    <div class="lista-ejercicios">
+        @for (ejercicio of ejercicios; track $index) {
+
+            <div class="ejercicio" (click)="consultarEjercicio(ejercicio)">
+                <strong>Nombre:</strong> {{ ejercicio.nombre }}<br>
+                <strong>Dificultad:</strong> {{ ejercicio.dificultad }}<br>
+                <strong>Grupo Muscular:</strong> {{ ejercicio.grupoMuscular }}<br><br>
+            </div>
+        }
+    </div>
+  </div>
+  

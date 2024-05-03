@@ -1,40 +1,38 @@
 .container {
-    max-width: 1024px;
-    width: 100%;
-    margin: 0 auto;
-    padding: 20px;
-    box-sizing: border-box;
-    text-align: center;
-  }
-  
-  h1 {
-    margin-bottom: 20px;
-  }
-  
-  h2 {
-    margin-right: 10px;
-  }
-  
-  p {
-    margin: 0;
-  }
-  
-  li {
-    display: flex;
-    align-items: center;
-    flex-wrap: wrap;
-  }
-  
-  hr {
-    width: 100%;
-    margin: 10px 0;
-    border: 0;
-    border-top: 1px solid #ccc;
-  }
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 20px;
+}
 
-  /* Estilos para el modal */
+h1 {
+  text-align: center;
+}
+
+.create-post-btn {
+  background-color: #4CAF50;
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  cursor: pointer;
+  margin-bottom: 20px;
+}
+
+.post {
+  background-color: #f9f9f9;
+  padding: 20px;
+  margin-bottom: 20px;
+}
+
+.delete-post-btn {
+  background-color: #f44336;
+  color: white;
+  padding: 5px 10px;
+  border: none;
+  cursor: pointer;
+}
+
 .modal {
-  display: none; /* Ocultar el modal por defecto */
+  display: none;
   position: fixed;
   z-index: 1;
   left: 0;
@@ -48,7 +46,7 @@
 
 .modal-content {
   background-color: #fefefe;
-  margin: 15% auto;
+  margin: 10% auto;
   padding: 20px;
   border: 1px solid #888;
   width: 80%;
@@ -69,7 +67,24 @@
 }
 
 .show-modal {
-  display: block; /* Mostrar el modal cuando la clase show-modal está presente */
+  display: block;
 }
 
-  
+input[type="text"],
+textarea {
+  width: 100%;
+  padding: 12px 20px;
+  margin: 8px 0;
+  box-sizing: border-box;
+  border: 2px solid #ccc;
+  border-radius: 4px;
+}
+
+.crear-btn {
+  background-color: #4CAF50;
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  cursor: pointer;
+  margin-top: 10px;
+}

@@ -47,4 +47,19 @@ export class HabitosSaludablesComponent {
   cerrarModal() {
     this.modalVisible = false;
   }
+  
+  isOpen: boolean = false;
+
+  constructor() { }
+
+  ngOnInit(): void {
+  }
+
+  openModal() {
+    this.isOpen = true;
+  }
+
+  closeModal() {
+    this.isOpen = false;
+  }
 }

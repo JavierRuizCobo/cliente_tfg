@@ -1,0 +1,20 @@
+<!-- modal.component.html -->
+<div class="fixed z-10 inset-0 overflow-y-auto" *ngIf="isOpen">
+    <div class="flex items-center justify-center min-h-screen">
+      <div class="fixed inset-0 bg-gray-500 opacity-75"></div>
+      <div class="relative bg-white rounded-lg p-8 max-w-md">
+        <div class="absolute top-0 right-0 pt-4 pr-4">
+          <button (click)="closeModal()"
+                  class="text-gray-600 hover:text-gray-800">
+            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+            </svg>
+          </button>
+        </div>
+        <div class="text-xl font-bold mb-4">Modal Title</div>
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam convallis diam nec orci euismod, ut consequat quam viverra.</p>
+      </div>
+    </div>
+  </div>
+  <div class="fixed inset-0 bg-gray-500 opacity-50" *ngIf="isOpen" (click)="closeModal()"></div>
+  
