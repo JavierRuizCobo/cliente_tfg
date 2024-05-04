@@ -1,0 +1,19 @@
+<table>
+    <tr>
+        <th>Nombre</th>
+        <th>Correo electrónico</th>
+        <th>Rol</th>
+        <th>Editar</th>
+        <th>Eliminar</th>
+    </tr>
+
+    @for (usuario of usuarios; track $index) {
+        <tr>
+            <td>{{ usuario.nombre }}</td>
+            <td>{{ usuario.correoElectronico }}</td>
+            <td>{{ usuario.rol }}</td>
+            <td><button class="editar-btn">Editar</button></td>
+            <td><button class="eliminar-btn">Eliminar</button></td>
+        </tr>
+    }
+</table>

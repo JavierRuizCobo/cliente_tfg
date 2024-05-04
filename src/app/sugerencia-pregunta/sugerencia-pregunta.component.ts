@@ -8,8 +8,7 @@ import { Component } from '@angular/core';
   styleUrl: './sugerencia-pregunta.component.css'
 })
 export class SugerenciaPreguntaComponent {
-  showModal = false;
-  toggleModal(){
-    this.showModal = !this.showModal;
-  }
+  
+
+  
 }

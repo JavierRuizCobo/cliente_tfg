@@ -4,11 +4,12 @@ import { NavBarComponent } from './nav-bar/nav-bar.component';
 import { HabitosSaludablesComponent } from './habitos-saludables/habitos-saludables.component';
 import { SugerenciaPreguntaComponent } from './sugerencia-pregunta/sugerencia-pregunta.component';
 import { EjerciciosComponent } from './ejercicios/ejercicios.component';
+import { ListaUsuariosComponent } from './usuarios/usuarios.component';
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [RouterOutlet, NavBarComponent, HabitosSaludablesComponent, EjerciciosComponent],
+  imports: [RouterOutlet, NavBarComponent, HabitosSaludablesComponent, EjerciciosComponent, ListaUsuariosComponent],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css'
 })
