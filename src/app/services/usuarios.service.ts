@@ -7,7 +7,13 @@ import { Usuario } from '../usuario';
 export class UsuarioService {
 
   private usuarios: Usuario[] = [
-    { nombre: 'Javier', correoElectronico: 'javier@gmail.com', rol: 'Coordinador' },
+    { nombre: 'Javier Ruiz Cobo', correoElectronico: 'javier@gmail.com', rol: 'Coordinador' },
+    { nombre: 'Javier Ruiz Cobo', correoElectronico: 'javier@gmail.com', rol: 'Coordinador' },
+    { nombre: 'Javier Ruiz Cobo', correoElectronico: 'javier@gmail.com', rol: 'Coordinador' },
+    { nombre: 'Javier Ruiz Cobo', correoElectronico: 'javier@gmail.com', rol: 'Coordinador' },
+    { nombre: 'Javier Ruiz Cobo', correoElectronico: 'javier@gmail.com', rol: 'Coordinador' },
+    { nombre: 'Javier Ruiz Cobo', correoElectronico: 'javier@gmail.com', rol: 'Coordinador' },
+    { nombre: 'Javier Ruiz Cobo', correoElectronico: 'javier@gmail.com', rol: 'Coordinador' },
     // ...
   ];
 
