@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
 import { MatDialog, MatDialogModule } from '@angular/material/dialog';
-import { ModalCrearEjercicioComponent } from '../modal-crear-ejercicio/modal-crear-ejercicio.component';
+import { ModalCrearEjercicioComponent } from './modal-crear-ejercicio/modal-crear-ejercicio.component';
 
 interface Ejercicio {
   nombre: string;

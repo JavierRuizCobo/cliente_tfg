@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { UsuarioService } from '../services/usuarios.service';
+import { UsuarioService } from './usuarios.service';
 
 interface Usuario {
   nombre: string;
