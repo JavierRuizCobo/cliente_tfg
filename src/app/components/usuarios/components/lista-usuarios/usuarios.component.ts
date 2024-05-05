@@ -1,11 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { UsuarioService } from './usuarios.service';
-
-interface Usuario {
-  nombre: string;
-  correoElectronico: string;
-  rol: string;
-}
+import { UsuarioService } from '../../services/usuarios.service';
+import { Usuario } from '../../../../core/models/usuario.model';
 
 
 @Component({

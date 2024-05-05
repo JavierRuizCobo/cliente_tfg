@@ -3,6 +3,7 @@ import { FormsModule } from '@angular/forms';
 import { MatDialogRef } from '@angular/material/dialog';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
+import { Ejercicio } from '../../../../core/models/ejercicio.model';
 
 @Component({
   selector: 'app-modal-crear-ejercicio',
@@ -15,7 +16,11 @@ export class ModalCrearEjercicioComponent {
 
   constructor(public dialogRef: MatDialogRef<ModalCrearEjercicioComponent>) {}
 
-  nuevoEjercicio: any = {};
+  nuevoEjercicio: Ejercicio = {
+    nombre: '',
+    dificultad: '',
+    grupoMuscular: ''
+  };
 
   cerrarModal(): void {
     this.dialogRef.close();

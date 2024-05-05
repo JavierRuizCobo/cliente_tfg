@@ -5,15 +5,15 @@ export const routes: Routes = [
 
     { 
       path: 'ejercicios', 
-      loadComponent: () => import('./components/ejercicios/ejercicios.component').then(m => m.EjerciciosComponent)
+      loadComponent: () => import('./components/ejercicios/components/listar-ejercicios/ejercicios.component').then(m => m.EjerciciosComponent)
     },
     { 
       path: 'usuarios', 
-      loadComponent: () => import('./components/usuarios/usuarios.component').then(m => m.ListaUsuariosComponent)
+      loadComponent: () => import('./components/usuarios/components/lista-usuarios/usuarios.component').then(m => m.ListaUsuariosComponent)
     },
     { 
       path: 'habitossaludables', 
-      loadComponent: () => import('./components/habitos-saludables/habitos-saludables.component').then(m => m.HabitosSaludablesComponent)
+      loadComponent: () => import('./components/habitos-saludables/components/listar-posts/habitos-saludables.component').then(m => m.HabitosSaludablesComponent)
     }
 
 ];

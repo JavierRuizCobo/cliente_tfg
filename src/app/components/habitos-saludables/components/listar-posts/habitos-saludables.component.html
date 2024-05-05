@@ -1,0 +1,19 @@
+<div class="container">
+    <h1>Posts sobre hábitos saludables</h1>
+  <button class="create-post-btn" (click)="abrirModalCrearPost()">Crear Post</button>
+    <ul>
+      @for (post of posts; track post) {
+        <div class="post">
+          <h2>{{ post.title }}</h2>
+          <p>{{ post.text }}</p>
+        </div>
+        <button class="delete-post-btn" (click)="eliminarPost(post)">Eliminar</button>
+
+      <hr>
+      }
+    </ul>
+
+  </div>
+  
+
+  
