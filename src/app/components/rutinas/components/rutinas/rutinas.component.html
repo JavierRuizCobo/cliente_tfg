@@ -1,0 +1,17 @@
+@for (rutina of rutinas; track $index) {
+
+    <div class="container">
+        <div class="rutina-card">
+          <div class="rutina-info">
+            <h2>{{ rutina.nombre }}</h2>
+            <p>{{ rutina.descripcion }}</p>
+          </div>
+          <div class="rutina-actions">
+            <button class="btn-planificar" (click)="planificarRutina(rutina.id)">Planificar</button>
+            <button class="btn-eliminar" (click)="eliminarRutina(rutina.id)">Eliminar</button>
+          </div>
+        </div>
+      </div>
+      
+}
+
