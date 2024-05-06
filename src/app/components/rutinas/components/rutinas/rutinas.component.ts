@@ -33,4 +33,12 @@ export class RutinasComponent {
     this.getRutinas(); // Actualizar la lista de rutinas después de eliminar
   }
 
+  crearRutina(){
+
+  }
+
+  solicitarRutina(){
+    
+  }
+
 }

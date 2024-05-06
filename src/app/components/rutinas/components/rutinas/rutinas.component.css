@@ -1,57 +1,98 @@
 .container {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-  }
-  
-  .rutina-card {
-    background-color: #ffffff;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    border-radius: 8px;
-    margin: 10px;
+    max-width: 1000px;
+    margin: 50px auto;
     padding: 20px;
-    width: calc(33.33% - 20px); /* 3 columnas en pantalla grande */
-    transition: box-shadow 0.3s;
+    background-color: #fff;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
   }
   
-  .rutina-card:hover {
-    box-shadow: 0 6px 10px rgba(0, 0, 0, 0.15);
+  .btn-group {
+    margin-bottom: 20px;
+    text-align: center;
   }
   
-  .rutina-info {
-    flex: 1;
-  }
-  
-  .rutina-actions {
-    display: flex;
-    justify-content: space-between;
-    margin-top: 20px;
-  }
-  
-  .btn-planificar, .btn-eliminar {
-    background-color: #007BFF;
-    color: #fff;
-    border: none;
-    border-radius: 8px;
-    padding: 12px 24px;
-    cursor: pointer;
+  .btn-group button {
+    margin-right: 10px;
+    margin-bottom: 10px;
+    padding: 10px 20px;
     font-size: 16px;
+    border: none;
+    background-color: #004d9c;
+    color: #fff;
+    border-radius: 5px;
+    cursor: pointer;
     transition: background-color 0.3s;
   }
   
-  .btn-planificar:hover, .btn-eliminar:hover {
-    background-color: #0056b3;
+  .btn-group button:hover {
+    background-color: #005fc5;
   }
   
-  @media screen and (max-width: 768px) {
+  .rutinas {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+  }
+  
+  .rutina-card {
+    width: calc(100% - 20px);
+    margin-bottom: 20px;
+    border: 1px solid #ccc;
+    padding: 10px;
+    border-radius: 5px;
+    background-color: #fff;
+    transition: box-shadow 0.3s;
+    position: relative;
+  }
+  
+  .rutina-card:hover {
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  }
+  
+  .rutina-info {
+    width: calc(100% - 130px); /* Restar el ancho de los botones */
+  }
+  
+  .rutina-actions {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+  }
+  
+  .rutina-actions button {
+    padding: 5px 10px;
+    font-size: 14px;
+    border: none;
+    background-color: #004d9c;
+    color: #fff;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+  }
+  
+  .rutina-actions button:hover {
+    background-color: #005fc5;
+  }
+  
+  .rutina-info h2 {
+    margin-top: 0;
+    color: #004d9c;
+  }
+  
+  @media (max-width: 768px) {
     .rutina-card {
-      width: calc(50% - 20px); /* 2 columnas en tablet */
+      width: calc(100% - 20px);
+    }
+  
+    .rutina-actions {
+      position: relative;
+      top: auto;
+      right: auto;
+      margin-top: 10px;
+    }
+  
+    .rutina-actions button {
+      width: 100%;
     }
   }
-  
-  @media screen and (max-width: 480px) {
-    .rutina-card {
-      width: calc(100% - 20px); /* 1 columna en móvil */
-    }
-  }
-  
