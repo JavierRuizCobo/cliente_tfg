@@ -9,18 +9,78 @@ import { BehaviorSubject, Observable } from 'rxjs';
 export class EjercicioService {
 
   private ejercicios: Ejercicio[] = [
-    { nombre: 'Flexiones de pecho', dificultad: 'Media', grupoMuscular: 'Pecho' },
-    { nombre: 'Sentadillas', dificultad: 'Fácil', grupoMuscular: 'Piernas' },
-    { nombre: 'Dominadas', dificultad: 'Difícil', grupoMuscular: 'Espalda' },
-    { nombre: 'Plancha abdominal', dificultad: 'Media', grupoMuscular: 'Abdominales' },
-    { nombre: 'Flexiones de pecho', dificultad: 'Media', grupoMuscular: 'Pecho' },
-    { nombre: 'Sentadillas', dificultad: 'Fácil', grupoMuscular: 'Piernas' },
-    { nombre: 'Flexiones de pecho', dificultad: 'Media', grupoMuscular: 'Pecho' },
-    { nombre: 'Sentadillas', dificultad: 'Fácil', grupoMuscular: 'Piernas' },
-    { nombre: 'Dominadas', dificultad: 'Difícil', grupoMuscular: 'Espalda' },
-    { nombre: 'Plancha abdominal', dificultad: 'Media', grupoMuscular: 'Abdominales' },
-    { nombre: 'Flexiones de pecho', dificultad: 'Media', grupoMuscular: 'Pecho' },
-    { nombre: 'Sentadillas', dificultad: 'Fácil', grupoMuscular: 'Piernas' },
+    {
+      "nombre": "Flexiones de pecho",
+      "dificultad": "Media",
+      "grupoMuscular": "Pecho",
+      "descripcion": "Ejercicio que fortalece los músculos pectorales, deltoides y tríceps."
+    }, // Ejercicio de pecho de dificultad media
+    {
+      "nombre": "Sentadillas",
+      "dificultad": "Fácil",
+      "grupoMuscular": "Piernas",
+      "descripcion": "Ejercicio que fortalece los músculos cuádriceps, isquiotibiales y glúteos."
+    }, // Ejercicio de piernas de dificultad fácil
+    {
+      "nombre": "Dominadas",
+      "dificultad": "Difícil",
+      "grupoMuscular": "Espalda",
+      "descripcion": "Ejercicio que fortalece los músculos de la espalda, bíceps y antebrazos."
+    }, // Ejercicio de espalda de dificultad difícil
+    {
+      "nombre": "Plancha abdominal",
+      "dificultad": "Media",
+      "grupoMuscular": "Abdominales",
+      "descripcion": "Ejercicio que fortalece los músculos abdominales, oblicuos y la espalda baja."
+    }, // Ejercicio de abdominales de dificultad media
+    {
+      "nombre": "Flexiones de pecho",
+      "dificultad": "Media",
+      "grupoMuscular": "Pecho",
+      "descripcion": "Ejercicio que fortalece los músculos pectorales, deltoides y tríceps."
+    }, // Ejercicio de pecho de dificultad media
+    {
+      "nombre": "Sentadillas",
+      "dificultad": "Fácil",
+      "grupoMuscular": "Piernas",
+      "descripcion": "Ejercicio que fortalece los músculos cuádriceps, isquiotibiales y glúteos."
+    }, // Ejercicio de piernas de dificultad fácil
+    {
+      "nombre": "Flexiones de pecho",
+      "dificultad": "Media",
+      "grupoMuscular": "Pecho",
+      "descripcion": "Ejercicio que fortalece los músculos pectorales, deltoides y tríceps."
+    }, // Ejercicio de pecho de dificultad media
+    {
+      "nombre": "Sentadillas",
+      "dificultad": "Fácil",
+      "grupoMuscular": "Piernas",
+      "descripcion": "Ejercicio que fortalece los músculos cuádriceps, isquiotibiales y glúteos."
+    }, // Ejercicio de piernas de dificultad fácil
+    {
+      "nombre": "Dominadas",
+      "dificultad": "Difícil",
+      "grupoMuscular": "Espalda",
+      "descripcion": "Ejercicio que fortalece los músculos de la espalda, bíceps y antebrazos."
+    }, // Ejercicio de espalda de dificultad difícil
+    {
+      "nombre": "Plancha abdominal",
+      "dificultad": "Media",
+      "grupoMuscular": "Abdominales",
+      "descripcion": "Ejercicio que fortalece los músculos abdominales, oblicuos y la espalda baja."
+    }, // Ejercicio de abdominales de dificultad media
+    {
+      "nombre": "Flexiones de pecho",
+      "dificultad": "Media",
+      "grupoMuscular": "Pecho",
+      "descripcion": "Ejercicio que fortalece los músculos pectorales, deltoides y tríceps."
+    }, // Ejercicio de pecho de dificultad media
+    {
+      "nombre": "Sentadillas",
+      "dificultad": "Fácil",
+      "grupoMuscular": "Piernas",
+      "descripcion": "Ejercicio que fortalece los músculos cuádriceps, isquiotibiales y glúteos."
+    } // Ejercicio de piernas de dificultad fácil
   ];
 
   private ejerciciosSubject = new BehaviorSubject<Ejercicio[]>(this.ejercicios);

@@ -14,7 +14,14 @@ export const routes: Routes = [
     { 
       path: 'habitossaludables', 
       loadComponent: () => import('./components/habitos-saludables/components/listar-posts/habitos-saludables.component').then(m => m.HabitosSaludablesComponent)
+    },
+    { 
+      path: 'sugerencia', 
+      loadComponent: () => import('./components/sugerencia-pregunta/sugerencia-pregunta.component').then(m => m.SugerenciaPreguntaComponent)
+    },
+    { 
+      path: 'calendario', 
+      loadComponent: () => import('./components/calendario/calendario.component').then(m => m.CalendarioComponent)
     }
-
 ];
 
