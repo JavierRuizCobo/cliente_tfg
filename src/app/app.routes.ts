@@ -21,7 +21,7 @@ export const routes: Routes = [
     },
     { 
       path: 'calendario', 
-      loadComponent: () => import('./components/calendario/calendario.component').then(m => m.CalendarioComponent)
+      loadComponent: () => import('./components/calendario/components/calendario.component').then(m => m.CalendarioComponent)
     },
     { 
       path: 'rutinas', 

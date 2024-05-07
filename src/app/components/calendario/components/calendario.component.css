@@ -1,0 +1,60 @@
+/* Estilo para el calendario */
+:host ::ng-deep .mi-calendario {
+  width: 100%;
+  margin: 0 auto;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+/* Estilo para los eventos del calendario */
+:host ::ng-deep .fc-event {
+  background-color: #4caf50; /* Verde */
+  color: white;
+  border: none;
+  cursor: pointer;
+  padding: 5px;
+  border-radius: 15px; /* Bordes redondeados */
+}
+
+/* Estilo cuando se pasa el mouse sobre un evento */
+:host ::ng-deep .fc-event:hover {
+  background-color: #388e3c; /* Verde oscuro */
+}
+
+/* Estilo para el encabezado del calendario */
+:host ::ng-deep .fc-toolbar-title {
+  color: #4caf50; /* Verde */
+  font-size: 20px;
+}
+
+/* Estilo para los días del calendario */
+:host ::ng-deep .fc-daygrid-day-number {
+  color: #4caf50; /* Verde */
+  font-size: 14px;
+}
+
+/* Estilo para los fines de semana del calendario */
+:host ::ng-deep .fc-daygrid-day.fc-day-sat, 
+:host ::ng-deep .fc-daygrid-day.fc-day-sun {
+  color: #f44336; /* Rojo */
+}
+
+/* Estilo para el botón de hoy del calendario */
+:host ::ng-deep .fc-today-button {
+  background-color: #4caf50; /* Verde */
+  border-color: #4caf50; /* Verde */
+  font-weight: bold;
+}
+
+/* Estilo para el botón de hoy del calendario cuando se pasa el mouse sobre él */
+:host ::ng-deep .fc-today-button:hover {
+  background-color: #388e3c; /* Verde oscuro */
+  border-color: #388e3c; /* Verde oscuro */
+}
+
+/* Media query para dispositivos móviles */
+@media (max-width: 768px) {
+  /* Estilo para el calendario en dispositivos móviles */
+  :host ::ng-deep .mi-calendario {
+    overflow-x: hidden; /* Ocultar la barra de desplazamiento horizontal */
+  }
+}
