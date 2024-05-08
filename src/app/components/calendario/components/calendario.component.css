@@ -1,60 +1,55 @@
-/* Estilo para el calendario */
-:host ::ng-deep .mi-calendario {
+.container {
+  max-width: 800px;
+  margin: 20px auto;
+  background-color: #fff;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0,0,0,0.1);
+  overflow: hidden;
+}
+.header {
+  background-color: #0d6efd;
+  color: #fff;
+  padding: 20px;
+  text-align: center;
+  border-bottom: 2px solid #0b5ed7;
+}
+.mi-calendario {
+  margin: 20px;
+}
+
+.modal {
+  display: none;
+  position: fixed;
+  z-index: 1;
+  left: 0;
+  top: 0;
   width: 100%;
-  margin: 0 auto;
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  height: 100%;
+  overflow: auto;
+  background-color: rgb(0,0,0);
+  background-color: rgba(0,0,0,0.4);
 }
 
-/* Estilo para los eventos del calendario */
-:host ::ng-deep .fc-event {
-  background-color: #4caf50; /* Verde */
-  color: white;
-  border: none;
-  cursor: pointer;
-  padding: 5px;
-  border-radius: 15px; /* Bordes redondeados */
+.modal-content {
+  background-color: #fefefe;
+  margin: 15% auto;
+  padding: 20px;
+  border: 1px solid #888;
+  width: 80%;
 }
 
-/* Estilo cuando se pasa el mouse sobre un evento */
-:host ::ng-deep .fc-event:hover {
-  background-color: #388e3c; /* Verde oscuro */
-}
-
-/* Estilo para el encabezado del calendario */
-:host ::ng-deep .fc-toolbar-title {
-  color: #4caf50; /* Verde */
-  font-size: 20px;
-}
-
-/* Estilo para los días del calendario */
-:host ::ng-deep .fc-daygrid-day-number {
-  color: #4caf50; /* Verde */
-  font-size: 14px;
-}
-
-/* Estilo para los fines de semana del calendario */
-:host ::ng-deep .fc-daygrid-day.fc-day-sat, 
-:host ::ng-deep .fc-daygrid-day.fc-day-sun {
-  color: #f44336; /* Rojo */
-}
-
-/* Estilo para el botón de hoy del calendario */
-:host ::ng-deep .fc-today-button {
-  background-color: #4caf50; /* Verde */
-  border-color: #4caf50; /* Verde */
+.close {
+  color: #aaaaaa;
+  float: right;
+  font-size: 28px;
   font-weight: bold;
 }
 
-/* Estilo para el botón de hoy del calendario cuando se pasa el mouse sobre él */
-:host ::ng-deep .fc-today-button:hover {
-  background-color: #388e3c; /* Verde oscuro */
-  border-color: #388e3c; /* Verde oscuro */
+.close:hover,
+.close:focus {
+  color: #000;
+  text-decoration: none;
+  cursor: pointer;
 }
 
-/* Media query para dispositivos móviles */
-@media (max-width: 768px) {
-  /* Estilo para el calendario en dispositivos móviles */
-  :host ::ng-deep .mi-calendario {
-    overflow-x: hidden; /* Ocultar la barra de desplazamiento horizontal */
-  }
-}
+

@@ -15,30 +15,29 @@ import { CalendarService } from '../services/calendar.service';
   styleUrl: './calendario.component.css'
 
 })
-export class CalendarioComponent {
+export class CalendarioComponent implements OnInit{
+
+  calendarOptions!: CalendarOptions;
 
   
-  calendarOptions: CalendarOptions = {
-    initialView: 'dayGridMonth',
-    plugins: [dayGridPlugin],
-    events: []
-  };
-
   constructor(private calendarService: CalendarService) { }
 
-  ngOnInit(): void {
-    this.obtenerRutinas();
+  ngOnInit() {
+    this.calendarService.obtenerEventos().subscribe(eventos => {
+      this.calendarOptions = {
+        locale: 'es',
+        buttonText: {
+          today: 'Hoy'
+        },
+        initialView: 'dayGridMonth',
+        weekends: true,
+        editable: true,
+        selectable: true,
+        dayMaxEvents: true,
+        plugins: [dayGridPlugin],
+        events: eventos,
+      };
+    });
   }
 
-  obtenerRutinas(): void {
-    this.calendarService.obtenerRutinas().subscribe(rutinas => {
-      this.calendarOptions.events = rutinas.map(rutina => {
-        return {
-          title: rutina.nombre,
-          start: rutina.fecha,
-          description: rutina.nombre,
-        };
-      });
-    });
-  };
 }
