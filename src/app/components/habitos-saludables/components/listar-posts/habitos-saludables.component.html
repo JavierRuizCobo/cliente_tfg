@@ -1,24 +1,27 @@
 <div class="container">
-    <h1>Posts sobre hábitos saludables</h1>
+  <h1>Posts sobre hábitos saludables</h1>
   <button class="create-post-btn" (click)="abrirModalCrearPost()">Crear Post</button>
-    <ul>
+
+  <ul>
       @for (post of postsToShow; track post) {
-        <div class="post">
-          <h2>{{ post.title }}</h2>
-          <p>{{ post.text }}</p>
-        </div>
-        <button class="delete-post-btn" (click)="eliminarPost(post)">Eliminar</button>
-
-      <hr>
+          <div class="post">
+              <h2>{{ post.title }}</h2>
+              <p>{{ post.text }}</p>
+          </div>
+          <button class="delete-post-btn" (click)="eliminarPost(post)">Eliminar</button>
+          <hr>
       }
-    </ul>
+  </ul>
 
-    <div class="pagination">
-      <button [disabled]="currentPage === 1" (click)="prevPage()">Anterior</button>
-      <span>    Página {{currentPage}} de {{totalPages}}    </span>
-      <button [disabled]="currentPage === totalPages" (click)="nextPage()">Siguiente</button>
+  <div class="pagination-container">
+      <div class="posts-per-page">
+          <label for="postsPerPage">Posts por página:</label>
+          <input type="number" id="postsPerPage" name="postsPerPage" [(ngModel)]="postsPerPage" min="1" (change)="changePostsPerPage()">
+      </div>
+      <div class="pagination">
+          <button [disabled]="currentPage === 1" (click)="prevPage()">Anterior</button>
+          <span>Página {{currentPage}} de {{totalPages}}</span>
+          <button [disabled]="currentPage === totalPages" (click)="nextPage()">Siguiente</button>
+      </div>
   </div>
-
-  </div>
-
-  
+</div>

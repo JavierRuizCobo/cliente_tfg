@@ -64,5 +64,9 @@ export class HabitosSaludablesComponent {
     }
   }
 
+  changePostsPerPage(): void {
+    this.currentPage = 1;
+}
+
 
 }

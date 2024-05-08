@@ -1,56 +1,121 @@
 .container {
   max-width: 800px;
-  margin: 20px auto;
+  margin: 0 auto;
   padding: 20px;
-  background-color: #fff;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-  border-radius: 10px;
 }
 
 h1 {
-  color: #007bff;
   text-align: center;
 }
 
-.post {
-  background-color: #f9f9f9;
-  padding: 10px;
-  border-radius: 5px;
-  margin-bottom: 10px;
-}
-
-button {
+.create-post-btn {
+  display: block;
+  margin: 10px auto;
   padding: 10px 20px;
   background-color: #007bff;
   color: #fff;
   border: none;
   border-radius: 5px;
   cursor: pointer;
-  transition: background-color 0.3s;
 }
 
-button:hover {
-  background-color: #0056b3;
+ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+.post {
+  background-color: #f9f9f9;
+  padding: 20px;
+  margin-bottom: 20px;
+}
+
+.post h2 {
+  margin-top: 0;
 }
 
 .delete-post-btn {
+  padding: 8px 12px;
   background-color: #dc3545;
-  margin-top: 10px;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
 }
 
 .delete-post-btn:hover {
   background-color: #c82333;
 }
 
-ul {
-  padding: 0;
-  list-style: none;
+.pagination-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
 }
 
-hr {
-  margin: 20px 0;
-  border: 0;
-  border-top: 1px solid #ccc;
+.posts-per-page,
+.pagination {
+  margin-top: 10px;
 }
 
+.posts-per-page label {
+  margin-right: 10px;
+}
 
+.posts-per-page input {
+  padding: 8px;
+  width: 50px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+.pagination button {
+  padding: 8px 12px;
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.pagination button:hover {
+  background-color: #0056b3;
+}
+
+.pagination button[disabled] {
+  background-color: #ccc;
+  cursor: not-allowed;
+}
+
+@media only screen and (max-width: 600px) {
+  .post {
+      padding: 10px;
+  }
+
+  .create-post-btn,
+  .pagination button {
+      font-size: 14px;
+      padding: 8px 10px;
+  }
+
+  .pagination-container {
+      flex-direction: column;
+      align-items: center;
+  }
+
+  .posts-per-page,
+  .pagination {
+      margin-top: 10px;
+      text-align: center;
+  }
+
+  .posts-per-page input {
+      width: 100%;
+      margin-top: 5px;
+  }
+
+  .pagination button {
+      margin-top: 5px;
+  }
+}
