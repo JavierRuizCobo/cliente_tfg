@@ -2,7 +2,7 @@
     <h1>Posts sobre hábitos saludables</h1>
   <button class="create-post-btn" (click)="abrirModalCrearPost()">Crear Post</button>
     <ul>
-      @for (post of posts; track post) {
+      @for (post of postsToShow; track post) {
         <div class="post">
           <h2>{{ post.title }}</h2>
           <p>{{ post.text }}</p>
@@ -13,7 +13,12 @@
       }
     </ul>
 
+    <div class="pagination">
+      <button [disabled]="currentPage === 1" (click)="prevPage()">Anterior</button>
+      <span>    Página {{currentPage}} de {{totalPages}}    </span>
+      <button [disabled]="currentPage === totalPages" (click)="nextPage()">Siguiente</button>
   </div>
-  
+
+  </div>
 
   

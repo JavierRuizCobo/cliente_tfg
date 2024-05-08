@@ -1,0 +1,24 @@
+<div class="modal-dialog modal-xl" role="document">
+  <div class="modal-content">
+    <div class="modal-header">
+      <h4 class="modal-title">Crear Nuevo Post</h4>
+      <button type="button" class="close" aria-label="Close" (click)="activeModal.dismiss('Cross click')">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    <div class="modal-body">
+      <form #crearPostForm="ngForm" (ngSubmit)="crearPost(crearPostForm)">
+        <div class="form-group">
+          <label for="titulo">Título:</label>
+          <input type="text" class="form-control" id="titulo" name="titulo" [(ngModel)]="nuevoPost.title" required>
+        </div>
+        <div class="form-group">
+          <label for="contenido">Contenido:</label>
+          <textarea class="form-control" id="contenido" name="contenido" [(ngModel)]="nuevoPost.text" rows="5" required></textarea>
+        </div>
+        <button type="submit" class="btn btn-primary">Guardar</button>
+        <button type="button" class="btn btn-secondary" (click)="activeModal.dismiss('Close click')">Cerrar</button>
+      </form>
+    </div>
+  </div>
+</div>
