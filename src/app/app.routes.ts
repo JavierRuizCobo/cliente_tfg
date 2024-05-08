@@ -17,7 +17,7 @@ export const routes: Routes = [
     },
     { 
       path: 'sugerencia', 
-      loadComponent: () => import('./components/sugerencia-pregunta/sugerencia-pregunta.component').then(m => m.SugerenciaPreguntaComponent)
+      loadComponent: () => import('./components/sugerencia-pregunta/components/sugerencia-pregunta.component').then(m => m.SugerenciaPreguntaComponent)
     },
     { 
       path: 'calendario', 
