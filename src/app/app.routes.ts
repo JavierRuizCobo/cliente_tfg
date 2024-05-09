@@ -5,7 +5,7 @@ export const routes: Routes = [
 
     { 
       path: 'ejercicios', 
-      loadComponent: () => import('./components/ejercicios/components/listar-ejercicios/ejercicios.component').then(m => m.EjerciciosComponent)
+      loadChildren: () => import('./components/ejercicios/ejercicios.module').then(m => m.EjerciciosModule)
     },
     { 
       path: 'usuarios', 

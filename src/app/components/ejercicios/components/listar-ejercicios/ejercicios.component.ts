@@ -2,7 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import {MatDialogModule } from '@angular/material/dialog';
 import { Ejercicio } from '../../../../core/models/ejercicio.model';
 import { EjercicioService } from '../../services/ejercicio.service';
-import { ModalCrearEjercicioService } from '../../services/modal-crear-ejercicio.service';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { ModalCrearEjercicioComponent } from '../modal-crear-ejercicio/modal-crear-ejercicio.component';
+import { Router } from '@angular/router';
 
 
 @Component({
@@ -22,7 +24,8 @@ export class EjerciciosComponent {
 
   constructor(
     private ejercicioService: EjercicioService,
-    private modalCrearEjercicioService: ModalCrearEjercicioService
+    private modalService: NgbModal,
+    private router: Router
   ) {}
 
   ngOnInit(): void {
@@ -42,7 +45,7 @@ export class EjerciciosComponent {
 
   consultarEjercicio(ejercicio: Ejercicio) {
     // Lógica para consultar el ejercicio
-    console.log('Consultando ejercicio:', ejercicio);
+    this.router.navigate(['/ejercicios/detalle', ejercicio.nombre]);
   }
 
   esMonitorOCoordinador(): boolean {
@@ -55,10 +58,19 @@ export class EjerciciosComponent {
   }
 
   abrirModalCrearEjercicio() {
-    this.modalCrearEjercicioService.abrirModal().subscribe(nuevoEjercicio => {
-      if (nuevoEjercicio) {
-        this.ejercicioService.agregarEjercicio(nuevoEjercicio);
-      }
+
+    const modalRef = this.modalService.open(ModalCrearEjercicioComponent, { 
+      centered: true, 
+      size : 'xl'
     });
+    
+    modalRef.result.then(
+      (nuevoEjercicio: Ejercicio) => {
+        if (nuevoEjercicio) {
+          this.ejercicioService.agregarEjercicio(nuevoEjercicio);
+        }
+      },
+      () => {}
+    );
   }
 }
