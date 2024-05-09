@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Ejercicio } from '../../../core/models/ejercicio.model';
-import { BehaviorSubject, Observable } from 'rxjs';
+import { BehaviorSubject, Observable, map } from 'rxjs';
 
 
 @Injectable({
@@ -100,4 +100,9 @@ export class EjercicioService {
     this.ejercicios = this.ejercicios.filter(e => e !== ejercicio);
     this.ejerciciosSubject.next(this.ejercicios);
   }
+
+  getEjercicioPorNombre(nombre: string): Ejercicio | undefined {
+    return this.ejercicios.find(ejercicio => ejercicio.nombre === nombre);
+  }
+
 }
