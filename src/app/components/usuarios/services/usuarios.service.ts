@@ -8,12 +8,12 @@ export class UsuarioService {
 
   private usuarios: Usuario[] = [
     { nombre: 'Javier Ruiz Cobo', correoElectronico: 'javier@gmail.com', rol: 'Coordinador' },
-    { nombre: 'Javier Ruiz Cobo', correoElectronico: 'javier@gmail.com', rol: 'Coordinador' },
-    { nombre: 'Javier Ruiz Cobo', correoElectronico: 'javier@gmail.com', rol: 'Coordinador' },
-    { nombre: 'Javier Ruiz Cobo', correoElectronico: 'javier@gmail.com', rol: 'Coordinador' },
-    { nombre: 'Javier Ruiz Cobo', correoElectronico: 'javier@gmail.com', rol: 'Coordinador' },
-    { nombre: 'Javier Ruiz Cobo', correoElectronico: 'javier@gmail.com', rol: 'Coordinador' },
-    { nombre: 'Javier Ruiz Cobo', correoElectronico: 'javier@gmail.com', rol: 'Coordinador' },
+    { nombre: ' Ruiz Cobo', correoElectronico: 'javier@gmail.com', rol: 'Coordinador' },
+    { nombre: 'www Ruiz Cobo', correoElectronico: 'javier@gmail.com', rol: 'Coordinador' },
+    { nombre: 'POe Ruiz Cobo', correoElectronico: 'javier@gmail.com', rol: 'Coordinador' },
+    { nombre: 'ddd Ruiz Cobo', correoElectronico: 'javier@gmail.com', rol: 'Coordinador' },
+    { nombre: 'aaa Ruiz Cobo', correoElectronico: 'javier@gmail.com', rol: 'Coordinador' },
+    { nombre: 'ffff Ruiz Cobo', correoElectronico: 'javier@gmail.com', rol: 'Coordinador' },
     // ...
   ];
 

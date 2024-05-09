@@ -1,3 +1,7 @@
+<input type="text" [(ngModel)]="filtro" placeholder="Buscar por nombre o correo electrónico">
+
+
+
 <table>
     <tr>
         <th>Nombre</th>
@@ -7,7 +11,7 @@
         <th>Eliminar</th>
     </tr>
 
-    @for (usuario of usuarios; track $index) {
+    @for (usuario of usuarios | filter: filtro; track $index) {
         <tr>
             <td>{{ usuario.nombre }}</td>
             <td>{{ usuario.correoElectronico }}</td>
