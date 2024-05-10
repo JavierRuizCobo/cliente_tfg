@@ -17,6 +17,7 @@ import { ModalUsuarioComponent } from '../modal-usuario/modal-usuario.component'
 export class ListaUsuariosComponent implements OnInit {
 
   usuarios: Usuario[] = [];
+  usuarioSeleccionado!: Usuario;
 
   filtro: string = '';
 
@@ -34,6 +35,16 @@ export class ListaUsuariosComponent implements OnInit {
     this.modalService.open(ModalUsuarioComponent, {
       centered: true
     });
+  }
+
+  openEditarUsuarioModal(usuario: Usuario) {
+    this.usuarioSeleccionado = usuario;
+    const modalRef = this.modalService.open(ModalUsuarioComponent, { size: 'xl' });
+    modalRef.componentInstance.usuario = usuario;
+  }
+
+  eliminarUsuario(correoElectronico : string){
+    this.usuarioService.eliminarUsuario(correoElectronico)
   }
 }
 

@@ -16,8 +16,8 @@
             <td>{{ usuario.nombre }}</td>
             <td>{{ usuario.correoElectronico }}</td>
             <td>{{ usuario.rol }}</td>
-            <td><button class="editar-btn">Editar</button></td>
-            <td><button class="eliminar-btn">Eliminar</button></td>
+            <td><button class="editar-btn" (click)="openEditarUsuarioModal(usuario)">Editar</button></td>
+            <td><button class="eliminar-btn" (click)="eliminarUsuario(usuario.correoElectronico)">Eliminar</button></td>
         </tr>
     }
 </table>

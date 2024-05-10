@@ -27,17 +27,17 @@ export class UsuarioService {
     this.usuarios.push(usuario);
   }
 
-  // actualizarUsuario(usuario: Usuario): void {
-  //   const index = this.usuarios.findIndex((u) => u.id === usuario.id);
-  //   if (index !== -1) {
-  //     this.usuarios[index] = usuario;
-  //   }
-  // }
+  actualizarUsuario(usuario: Usuario): void {
+    const index = this.usuarios.findIndex((u) => u.correoElectronico === usuario.correoElectronico);
+    if (index !== -1) {
+      this.usuarios[index] = usuario;
+    }
+  }
 
-  // eliminarUsuario(id: number): void {
-  //   const index = this.usuarios.findIndex((u) => u.id === id);
-  //   if (index !== -1) {
-  //     this.usuarios.splice(index, 1);
-  //   }
-  // }
+  eliminarUsuario(correoElectronico: string): void {
+    const index = this.usuarios.findIndex((u) => u.correoElectronico === correoElectronico);
+    if (index !== -1) {
+      this.usuarios.splice(index, 1);
+    }
+  }
 }
