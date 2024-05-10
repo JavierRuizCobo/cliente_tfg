@@ -33,7 +33,8 @@ export class ListaUsuariosComponent implements OnInit {
   openCrearUsuarioModal(): void {
 
     this.modalService.open(ModalUsuarioComponent, {
-      centered: true
+      centered: true,
+      size: 'xl'
     });
   }
 

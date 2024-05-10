@@ -21,6 +21,8 @@ export class ModalUsuarioComponent {
     rol: ''
   };
 
+  roles: string[] = ['Cliente', 'Monitor', 'Coordinador'];
+
   constructor(public activeModal: NgbActiveModal, private usuarioService: UsuarioService) {}
 
   ngOnInit() {
