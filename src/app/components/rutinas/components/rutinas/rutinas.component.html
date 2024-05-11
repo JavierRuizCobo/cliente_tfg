@@ -5,7 +5,7 @@
     </div>
     <div class="rutinas">
         @for (rutina of rutinas; track $index) {
-            <div class="rutina-card">
+            <div class="rutina-card" (click)="consultarRutina(rutina)">
               <div class="rutina-info">
                 <h2>{{ rutina.nombre }}</h2>
                 <p>{{ rutina.descripcion }}</p>

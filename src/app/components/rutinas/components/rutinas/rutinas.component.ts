@@ -4,6 +4,7 @@ import { Rutina } from '../../../../core/models/rutina.model';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { ModalCrearRutinaComponent } from '../modal-crear-rutina/modal-crear-rutina.component';
 import { SolicitarRutinaComponent } from '../solicitar-rutina/solicitar-rutina.component';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-rutinas',
@@ -17,7 +18,8 @@ export class RutinasComponent {
   rutinas: Rutina[] = [];
 
   constructor(private routineService: RutinasService,
-    private modalService : NgbModal
+    private modalService : NgbModal,
+    private router: Router
   ) { }
 
   ngOnInit(): void {
@@ -53,6 +55,11 @@ export class RutinasComponent {
       centered: true
     })
     
+  }
+  consultarRutina(rutina : Rutina){
+
+    this.router.navigate(['/rutinas/detalle', rutina.id]);
+
   }
 
 }

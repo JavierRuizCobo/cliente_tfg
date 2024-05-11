@@ -47,6 +47,14 @@ export class RutinasService {
     return of(this.rutinas);
   }
 
+  getRutina(id: string | null): Observable<Rutina | null> {
+    if (id === null) {
+      return of(null);
+    }
+    const rutina = this.rutinas.find(rutina => rutina.id === id);
+    return of(rutina || null);
+  }
+
   // Crear una nueva rutina de entrenamiento
   createRoutine(routine: Rutina): void {
     this.rutinas.push(routine);

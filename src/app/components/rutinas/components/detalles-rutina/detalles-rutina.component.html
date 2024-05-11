@@ -1,1 +1,22 @@
-<p>detalles-rutina works!</p>
+
+@if (rutina) {
+
+    <div>
+        <h2>{{ rutina.nombre }}</h2>
+        <p>Descripción: {{ rutina.descripcion }}</p>
+        <h3>Ejercicios:</h3>
+        <ul>
+            @for (ejercicio of rutina.ejercicios; track $index) {
+                <li >
+                    {{ ejercicio.nombre }} - {{ ejercicio.descripcion }}
+                  </li>
+            }
+          
+        </ul>
+      </div>
+
+
+
+}
+
+  
