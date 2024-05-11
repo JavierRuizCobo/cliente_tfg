@@ -5,6 +5,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { Ejercicio } from '../../../../core/models/ejercicio.model';
 import { MatOptionModule } from '@angular/material/core';
+import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
   selector: 'app-modal-crear-ejercicio',
@@ -15,7 +16,6 @@ import { MatOptionModule } from '@angular/material/core';
 })
 export class ModalCrearEjercicioComponent {
 
-  constructor(public dialogRef: MatDialogRef<ModalCrearEjercicioComponent>) {}
 
   nuevoEjercicio: Ejercicio = {
     nombre: '',
@@ -24,12 +24,14 @@ export class ModalCrearEjercicioComponent {
     descripcion: ''
   };
 
+  constructor(public activeModal: NgbActiveModal) {}
+
   cerrarModal(): void {
-    this.dialogRef.close();
+    this.activeModal.close();
   }
 
   agregarEjercicio(): void {
-    this.dialogRef.close(this.nuevoEjercicio);
+    this.activeModal.close(this.nuevoEjercicio);
   }
 
 }

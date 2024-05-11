@@ -24,6 +24,7 @@ export class HabitosSaludablesService {
 
   agregarPost(post: Post): void {
     this.posts.push(post);
+    this.postsSubject.next(this.posts);
   }
 
   eliminarPost(post: Post): void {

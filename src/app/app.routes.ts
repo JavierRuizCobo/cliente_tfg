@@ -5,7 +5,7 @@ export const routes: Routes = [
 
     { 
       path: 'ejercicios', 
-      loadComponent: () => import('./components/ejercicios/components/listar-ejercicios/ejercicios.component').then(m => m.EjerciciosComponent)
+      loadChildren: () => import('./components/ejercicios/ejercicios.module').then(m => m.EjerciciosModule)
     },
     { 
       path: 'usuarios', 
@@ -17,11 +17,11 @@ export const routes: Routes = [
     },
     { 
       path: 'sugerencia', 
-      loadComponent: () => import('./components/sugerencia-pregunta/sugerencia-pregunta.component').then(m => m.SugerenciaPreguntaComponent)
+      loadComponent: () => import('./components/sugerencia-pregunta/components/sugerencia-pregunta.component').then(m => m.SugerenciaPreguntaComponent)
     },
     { 
       path: 'calendario', 
-      loadComponent: () => import('./components/calendario/calendario.component').then(m => m.CalendarioComponent)
+      loadComponent: () => import('./components/calendario/components/calendario.component').then(m => m.CalendarioComponent)
     },
     { 
       path: 'rutinas', 

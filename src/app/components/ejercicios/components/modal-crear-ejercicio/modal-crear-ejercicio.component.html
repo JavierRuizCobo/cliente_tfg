@@ -1,28 +1,46 @@
-<div class="modal-container">
+<div class="modal-container modal-ancho">
   <h2>Crear Ejercicio</h2>
-  <mat-form-field>
-    <mat-label>Nombre del ejercicio</mat-label>
-    <input matInput placeholder="Nombre del ejercicio" [(ngModel)]="nuevoEjercicio.nombre">
-  </mat-form-field>
-  <mat-form-field>
-    <mat-label>Dificultad</mat-label>
-    <mat-select [(ngModel)]="nuevoEjercicio.dificultad">
-      <mat-option value="Fácil">Fácil</mat-option>
-      <mat-option value="Media">Media</mat-option>
-      <mat-option value="Difícil">Difícil</mat-option>
-    </mat-select>
-  </mat-form-field>
-  <mat-form-field>
-    <mat-label>Grupo Muscular</mat-label>
-    <mat-select [(ngModel)]="nuevoEjercicio.grupoMuscular">
-      <mat-option value="Tren Superior">Tren Superior</mat-option>
-      <mat-option value="Tren Inferior">Tren Inferior</mat-option>
-    </mat-select>
-  </mat-form-field>
-  <mat-form-field>
-    <mat-label>Descripción</mat-label>
-    <textarea matInput placeholder="Descripción" [(ngModel)]="nuevoEjercicio.descripcion"></textarea>
-  </mat-form-field>
-  <button mat-button class="cancelar-button" (click)="cerrarModal()">Cancelar</button>
-  <button mat-raised-button class="agregar-button" (click)="agregarEjercicio()">Agregar</button>
+  <form #form="ngForm" (ngSubmit)="agregarEjercicio()">
+    <div class="form-row">
+      <div class="col-md-6">
+        <div class="form-group">
+          <label for="nombre">Nombre del ejercicio</label>
+          <input type="text" class="form-control" id="nombre" name="nombre" [(ngModel)]="nuevoEjercicio.nombre" required>
+        </div>
+        <div class="form-group">
+          <label>Añadir Fotos</label>
+          <input type="file" class="form-control-file">
+        </div>
+        <div class="form-group">
+          <label>Añadir Videos</label>
+          <input type="file" class="form-control-file">
+        </div>
+      </div>
+      <div class="col-md-6">
+        <div class="form-group">
+          <label for="dificultad">Dificultad</label>
+          <select class="form-control" id="dificultad" name="dificultad" [(ngModel)]="nuevoEjercicio.dificultad" required>
+            <option value="Fácil">Fácil</option>
+            <option value="Media">Media</option>
+            <option value="Difícil">Difícil</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label for="grupoMuscular">Grupo Muscular</label>
+          <select class="form-control" id="grupoMuscular" name="grupoMuscular" [(ngModel)]="nuevoEjercicio.grupoMuscular" required>
+            <option value="Tren Superior">Tren Superior</option>
+            <option value="Tren Inferior">Tren Inferior</option>
+          </select>
+        </div>
+      </div>
+    </div>
+    <div class="form-group">
+      <label for="descripcion">Descripción</label>
+      <textarea class="form-control" id="descripcion" name="descripcion" [(ngModel)]="nuevoEjercicio.descripcion" required></textarea>
+    </div>
+    <div class="button-group">
+      <button type="button" class="btn btn-secondary" (click)="cerrarModal()">Cancelar</button>
+      <button type="submit" class="btn btn-primary">Agregar</button>
+    </div>
+  </form>
 </div>
