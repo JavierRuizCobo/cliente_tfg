@@ -1,0 +1,24 @@
+
+<div class="container">
+  <h2>Seleccionar Ejercicios</h2>
+  <div class="ejercicios-disponibles">
+    <h3>Ejercicios Disponibles</h3>
+    @for (ejercicio of ejerciciosDisponibles; track $index) {
+      <div>
+        <input type="checkbox" (change)="toggleSeleccion($event, ejercicio)"> {{ ejercicio.nombre }}
+      </div>
+    }
+  </div>
+  
+  <div class="ejercicios-seleccionados">
+    <h3>Ejercicios Seleccionados</h3>
+    @for (ejercicio of ejerciciosSeleccionados; track $index) {
+      <div>
+        {{ ejercicio.nombre }}      
+      </div>
+    }
+  </div>
+
+  <button (click)="agregarEjercicios()">Agregar Ejercicios</button>
+</div>
+
