@@ -1,1 +1,7 @@
+
+@if (authService.isLoggedIn()) {
 <app-header></app-header>
+} @else {
+<app-inicio-sesion></app-inicio-sesion>
+
+}
