@@ -1,0 +1,26 @@
+<div class="container my-5">
+    <h1 class="mb-4">Crear Rutina de Entrenamiento</h1>
+    <form #rutinaForm="ngForm" (ngSubmit)="submitRutina(rutinaForm)">
+      <div class="form-group mb-4">
+        <label for="nombre">Nombre de la rutina:</label>
+        <input type="text" class="form-control" id="nombre" name="nombre" ngModel required>
+      </div>
+      <div class="form-group mb-4">
+        <label for="descripcion">Descripción de la rutina:</label>
+        <textarea class="form-control" id="descripcion" name="descripcion" ngModel required></textarea>
+      </div>
+      <div class="form-group mb-4">
+        <button type="button" class="btn btn-primary" (click)="openModal()">Seleccionar ejercicios</button>
+      </div>
+      <div class="form-group mb-4">
+        <h2>Ejercicios seleccionados</h2>
+        <ul class="list-group text-right">
+          <li *ngFor="let ejercicio of ejercicios" class="list-group-item">
+            {{ ejercicio.nombre }}
+          </li>
+        </ul>
+      </div>
+      <button type="submit" class="btn btn-success" [disabled]="!rutinaForm.valid || ejercicios.length === 0">Crear rutina</button>
+    </form>
+  </div>
+  
