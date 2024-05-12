@@ -4,7 +4,8 @@ import { DetallesRutinaComponent } from './components/detalles-rutina/detalles-r
 
 const routes: Routes = [
   { path: '', component: RutinasComponent },
-  { path: 'detalle/:id', component: DetallesRutinaComponent }
+  { path: 'detalle/:id', component: DetallesRutinaComponent },
+  { path: 'planificar/:id', component: DetallesRutinaComponent },
 ];
 
 export const RutinasRoutes = routes
