@@ -26,6 +26,11 @@ export const routes: Routes = [
     { 
       path: 'rutinas', 
       loadChildren: () => import('./components/rutinas/rutinas.routes').then(m => m.RutinasRoutes)
+    },
+    { 
+      path: 'login',
+      loadComponent: () => import('./core/auth/components/inicio-sesion/inicio-sesion.component').then(m => m.InicioSesionComponent)
+
     }
 ];
 
