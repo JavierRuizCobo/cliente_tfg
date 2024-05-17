@@ -3,9 +3,10 @@ import { FormsModule } from '@angular/forms';
 import { MatDialogRef } from '@angular/material/dialog';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
-import { Ejercicio } from '../../../../core/models/ejercicio.model';
+import { Exercise } from '../../../../core/models/ejercicio.model';
 import { MatOptionModule } from '@angular/material/core';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
+import { EjercicioService } from '../../services/ejercicio.service';
 
 @Component({
   selector: 'app-modal-crear-ejercicio',
@@ -17,21 +18,33 @@ import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 export class ModalCrearEjercicioComponent {
 
 
-  nuevoEjercicio: Ejercicio = {
-    nombre: '',
-    dificultad: '',
-    grupoMuscular: '',
-    descripcion: ''
+  newExercise: Exercise = {
+    name: '',
+    difficulty: '',
+    muscles: '',
+    description: ''
   };
 
-  constructor(public activeModal: NgbActiveModal) {}
+  constructor(public activeModal: NgbActiveModal, private exerciseService: EjercicioService) {}
 
   cerrarModal(): void {
     this.activeModal.close();
   }
 
-  agregarEjercicio(): void {
-    this.activeModal.close(this.nuevoEjercicio);
+  agregarEjercicio(form: { valid: any; }): void {
+
+
+    if (form.valid) {
+      console.log(this.newExercise)
+      this.exerciseService.agregarEjercicio(this.newExercise).subscribe({
+        next: (res) => {
+          console.log(res);
+        },
+        error: (e) => console.error(e)
+      });
+
+      this.activeModal.close('Ejercicio creado');
+    }
   }
 
 }

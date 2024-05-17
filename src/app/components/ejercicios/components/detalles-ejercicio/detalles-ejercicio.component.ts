@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { EjercicioService } from '../../services/ejercicio.service';
-import { Ejercicio } from '../../../../core/models/ejercicio.model';
+import { Exercise } from '../../../../core/models/ejercicio.model';
 import { ActivatedRoute } from '@angular/router';
 
 @Component({
@@ -12,7 +12,7 @@ import { ActivatedRoute } from '@angular/router';
 })
 export class DetallesEjercicioComponent {
 
-  ejercicio: Ejercicio | undefined;
+  ejercicio: Exercise | undefined;
 
   constructor(
     private route: ActivatedRoute,
@@ -23,7 +23,13 @@ export class DetallesEjercicioComponent {
     console.log("Hola")
     this.route.params.subscribe(params => {
       const nombreEjercicio = params['id'];
-      this.ejercicio = this.ejercicioService.getEjercicioPorNombre(nombreEjercicio);
+      this.ejercicioService.getEjercicioPorId(nombreEjercicio).subscribe({
+        next: (data) => {
+          this.ejercicio = data;
+
+        }, 
+        error: (e) => console.error(e)
+      });
     });
   }
 

@@ -8,7 +8,7 @@ import { HttpClient } from '@angular/common/http';
 })
 export class HabitosSaludablesService {
 
-  private apiUrl = 'http://localhost:3000/posts'; // Cambia esto por la URL de tu servidor Express
+  private apiUrl = 'http://localhost:3000/posts';
   
   constructor(private http: HttpClient) { }
 

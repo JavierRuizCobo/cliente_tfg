@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
-import { Ejercicio } from '../../../core/models/ejercicio.model';
+import { Exercise } from '../../../core/models/ejercicio.model';
 import { BehaviorSubject, Observable, map } from 'rxjs';
+import { HttpClient } from '@angular/common/http';
 
 
 @Injectable({
@@ -8,101 +9,26 @@ import { BehaviorSubject, Observable, map } from 'rxjs';
 })
 export class EjercicioService {
 
-  private ejercicios: Ejercicio[] = [
-    {
-      "nombre": "Flexiones de pecho",
-      "dificultad": "Media",
-      "grupoMuscular": "Pecho",
-      "descripcion": "Ejercicio que fortalece los músculos pectorales, deltoides y tríceps."
-    }, // Ejercicio de pecho de dificultad media
-    {
-      "nombre": "Sentadillas",
-      "dificultad": "Fácil",
-      "grupoMuscular": "Piernas",
-      "descripcion": "Ejercicio que fortalece los músculos cuádriceps, isquiotibiales y glúteos."
-    }, // Ejercicio de piernas de dificultad fácil
-    {
-      "nombre": "Dominadas",
-      "dificultad": "Difícil",
-      "grupoMuscular": "Espalda",
-      "descripcion": "Ejercicio que fortalece los músculos de la espalda, bíceps y antebrazos."
-    }, // Ejercicio de espalda de dificultad difícil
-    {
-      "nombre": "Plancha abdominal",
-      "dificultad": "Media",
-      "grupoMuscular": "Abdominales",
-      "descripcion": "Ejercicio que fortalece los músculos abdominales, oblicuos y la espalda baja."
-    }, // Ejercicio de abdominales de dificultad media
-    {
-      "nombre": "Flexiones de pecho",
-      "dificultad": "Media",
-      "grupoMuscular": "Pecho",
-      "descripcion": "Ejercicio que fortalece los músculos pectorales, deltoides y tríceps."
-    }, // Ejercicio de pecho de dificultad media
-    {
-      "nombre": "Sentadillas",
-      "dificultad": "Fácil",
-      "grupoMuscular": "Piernas",
-      "descripcion": "Ejercicio que fortalece los músculos cuádriceps, isquiotibiales y glúteos."
-    }, // Ejercicio de piernas de dificultad fácil
-    {
-      "nombre": "Flexiones de pecho",
-      "dificultad": "Media",
-      "grupoMuscular": "Pecho",
-      "descripcion": "Ejercicio que fortalece los músculos pectorales, deltoides y tríceps."
-    }, // Ejercicio de pecho de dificultad media
-    {
-      "nombre": "Sentadillas",
-      "dificultad": "Fácil",
-      "grupoMuscular": "Piernas",
-      "descripcion": "Ejercicio que fortalece los músculos cuádriceps, isquiotibiales y glúteos."
-    }, // Ejercicio de piernas de dificultad fácil
-    {
-      "nombre": "Dominadas",
-      "dificultad": "Difícil",
-      "grupoMuscular": "Espalda",
-      "descripcion": "Ejercicio que fortalece los músculos de la espalda, bíceps y antebrazos."
-    }, // Ejercicio de espalda de dificultad difícil
-    {
-      "nombre": "Plancha abdominal",
-      "dificultad": "Media",
-      "grupoMuscular": "Abdominales",
-      "descripcion": "Ejercicio que fortalece los músculos abdominales, oblicuos y la espalda baja."
-    }, // Ejercicio de abdominales de dificultad media
-    {
-      "nombre": "Flexiones de pecho",
-      "dificultad": "Media",
-      "grupoMuscular": "Pecho",
-      "descripcion": "Ejercicio que fortalece los músculos pectorales, deltoides y tríceps."
-    }, // Ejercicio de pecho de dificultad media
-    {
-      "nombre": "Sentadillas",
-      "dificultad": "Fácil",
-      "grupoMuscular": "Piernas",
-      "descripcion": "Ejercicio que fortalece los músculos cuádriceps, isquiotibiales y glúteos."
-    } // Ejercicio de piernas de dificultad fácil
-  ];
+  private apiUrl = 'http://localhost:3000/exercises';
 
-  private ejerciciosSubject = new BehaviorSubject<Ejercicio[]>(this.ejercicios);
+  constructor(private http: HttpClient) { }
 
-  constructor() {}
-
-  getEjercicios(): Observable<Ejercicio[]> {
-    return this.ejerciciosSubject.asObservable();
+  getEjercicios(): Observable<Exercise[]> {
+    return this.http.get<Exercise[]>(this.apiUrl);
   }
 
-  agregarEjercicio(nuevoEjercicio: Ejercicio): void {
-    this.ejercicios.push(nuevoEjercicio);
-    this.ejerciciosSubject.next(this.ejercicios);
+  agregarEjercicio(nuevoEjercicio: Exercise): Observable<Exercise> {
+    return this.http.post<Exercise>(this.apiUrl, nuevoEjercicio);
   }
 
-  eliminarEjercicio(ejercicio: Ejercicio): void {
-    this.ejercicios = this.ejercicios.filter(e => e !== ejercicio);
-    this.ejerciciosSubject.next(this.ejercicios);
+  eliminarEjercicio(id: string): Observable<Exercise> {
+    const url = `${this.apiUrl}/${id}`;
+    return this.http.delete<Exercise>(url);
   }
 
-  getEjercicioPorNombre(nombre: string): Ejercicio | undefined {
-    return this.ejercicios.find(ejercicio => ejercicio.nombre === nombre);
+  getEjercicioPorId(id: string): Observable<Exercise> {
+    const url = `${this.apiUrl}/${id}`;
+    return this.http.get<Exercise>(url);
   }
 
 }

@@ -13,31 +13,11 @@ export class RutinasService {
       nombre: 'Rutina de fuerza',
       descripcion: 'Rutina para ganar fuerza muscular',
       ejercicios: [
-        { nombre: 'Sentadillas', dificultad: 'Intermedio', grupoMuscular: 'Piernas', descripcion: 'Las sentadillas son un ejercicio compuesto que trabaja los músculos de las piernas, los glúteos y la espalda baja.' },
-        { nombre: 'Press de banca', dificultad: 'Avanzado', grupoMuscular: 'Pecho', descripcion: 'El press de banca es un ejercicio para desarrollar los músculos pectorales, deltoides anteriores y tríceps.' },
-        { nombre: 'Dominadas', dificultad: 'Avanzado', grupoMuscular: 'Espalda', descripcion: 'Las dominadas son un ejercicio excelente para desarrollar la fuerza de la espalda, los hombros y los brazos.' }
+        { name: 'Sentadillas', difficulty: 'Intermedio', muscles: 'Piernas', description: 'Las sentadillas son un ejercicio compuesto que trabaja los músculos de las piernas, los glúteos y la espalda baja.' },
+        { name: 'Press de banca', difficulty: 'Avanzado', muscles: 'Pecho', description: 'El press de banca es un ejercicio para desarrollar los músculos pectorales, deltoides anteriores y tríceps.' },
+        { name: 'Dominadas', difficulty: 'Avanzado', muscles: 'Espalda', description: 'Las dominadas son un ejercicio excelente para desarrollar la fuerza de la espalda, los hombros y los brazos.' }
       ]
     },
-    {
-      id: '2',
-      nombre: 'Rutina de cardio',
-      descripcion: 'Rutina para mejorar la resistencia cardiovascular',
-      ejercicios: [
-        { nombre: 'Carrera en cinta', dificultad: 'Intermedio', grupoMuscular: 'Cardio', descripcion: 'Carrera en cinta para mejorar la resistencia cardiovascular y quemar calorías.' },
-        { nombre: 'Ciclismo', dificultad: 'Intermedio', grupoMuscular: 'Cardio', descripcion: 'Ciclismo para mejorar la resistencia cardiovascular y tonificar las piernas.' },
-        { nombre: 'Natación', dificultad: 'Intermedio', grupoMuscular: 'Cardio', descripcion: 'Natación para mejorar la resistencia cardiovascular y fortalecer todo el cuerpo.' }
-      ]
-    },
-    {
-      id: '3',
-      nombre: 'Rutina de flexibilidad',
-      descripcion: 'Rutina para mejorar la flexibilidad muscular',
-      ejercicios: [
-        { nombre: 'Estiramientos de piernas', dificultad: 'Principiante', grupoMuscular: 'Flexibilidad', descripcion: 'Estiramientos de piernas para mejorar la flexibilidad de los músculos de las piernas.' },
-        { nombre: 'Estiramientos de brazos', dificultad: 'Principiante', grupoMuscular: 'Flexibilidad', descripcion: 'Estiramientos de brazos para mejorar la flexibilidad de los músculos de los brazos y hombros.' },
-        { nombre: 'Estiramientos de espalda', dificultad: 'Principiante', grupoMuscular: 'Flexibilidad', descripcion: 'Estiramientos de espalda para mejorar la flexibilidad de la espalda y aliviar la tensión.' }
-      ]
-    }
   ];
 
   constructor() { }

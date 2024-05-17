@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {MatDialogModule } from '@angular/material/dialog';
-import { Ejercicio } from '../../../../core/models/ejercicio.model';
+import { Exercise } from '../../../../core/models/ejercicio.model';
 import { EjercicioService } from '../../services/ejercicio.service';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { ModalCrearEjercicioComponent } from '../modal-crear-ejercicio/modal-crear-ejercicio.component';
@@ -18,8 +18,8 @@ import { Router } from '@angular/router';
 
 export class EjerciciosComponent {
 
-  ejercicios: Ejercicio[] = [];
-  ejerciciosFiltrados: Ejercicio[] = [];
+  ejercicios: Exercise[] = [];
+  ejerciciosFiltrados: Exercise[] = [];
   filtroDificultad: string = 'todas';
 
   constructor(
@@ -29,23 +29,31 @@ export class EjerciciosComponent {
   ) {}
 
   ngOnInit(): void {
-    this.ejercicioService.getEjercicios().subscribe(ejercicios => {
-      this.ejercicios = ejercicios;
-      this.filtrarEjercicios();
-    });
+    this.getAllExercises();
+  }
+
+  getAllExercises(): void{
+    this.ejercicioService.getEjercicios()
+      .subscribe({
+        next: (data) => {
+          this.ejercicios = data;
+          this.filtrarEjercicios();
+        },
+        error: (e) => console.error(e)
+      });
   }
 
   filtrarEjercicios() {
     if (this.filtroDificultad === 'todas') {
       this.ejerciciosFiltrados = this.ejercicios;
     } else {
-      this.ejerciciosFiltrados = this.ejercicios.filter(ejercicio => ejercicio.dificultad === this.filtroDificultad);
+      this.ejerciciosFiltrados = this.ejercicios.filter(ejercicio => ejercicio.difficulty === this.filtroDificultad);
     }
   }
 
-  consultarEjercicio(ejercicio: Ejercicio) {
+  consultarEjercicio(ejercicio: Exercise) {
     // Lógica para consultar el ejercicio
-    this.router.navigate(['/ejercicios/detalle', ejercicio.nombre]);
+    this.router.navigate(['/ejercicios/detalle', ejercicio._id]);
   }
 
   esMonitorOCoordinador(): boolean {
@@ -53,8 +61,18 @@ export class EjerciciosComponent {
     return true; // Cambiar esto por la lógica real de tu aplicación
   }
 
-  eliminarEjercicio(ejercicio: Ejercicio) {
-    this.ejercicioService.eliminarEjercicio(ejercicio);
+  eliminarEjercicio(ejercicio: Exercise) {
+    
+    if(ejercicio._id){
+      this.ejercicioService.eliminarEjercicio(ejercicio._id).subscribe({
+        next: (res) => {
+          console.log(res);
+          this.getAllExercises();
+        },
+        error: (e) => console.error(e)
+      });
+
+    } 
   }
 
   abrirModalCrearEjercicio() {
@@ -63,14 +81,15 @@ export class EjerciciosComponent {
       centered: true, 
       size : 'xl'
     });
+
+    modalRef.result.then((result) => {
+      // Esta función se ejecutará cuando se cierre el modal
+      // Aquí puedes poner cualquier lógica que necesites para actualizar los posts
+      this.getAllExercises();
+    }, (reason) => {
+      // Esta función se ejecutará si se cierra el modal de alguna manera inesperada
+      console.log(`Modal cerrado de manera inesperada: ${reason}`);
+    });
     
-    modalRef.result.then(
-      (nuevoEjercicio: Ejercicio) => {
-        if (nuevoEjercicio) {
-          this.ejercicioService.agregarEjercicio(nuevoEjercicio);
-        }
-      },
-      () => {}
-    );
   }
 }
