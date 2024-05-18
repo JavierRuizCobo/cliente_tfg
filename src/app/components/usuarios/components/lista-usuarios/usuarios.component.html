@@ -1,19 +1,36 @@
-<table>
-    <tr>
-        <th>Nombre</th>
-        <th>Correo electrónico</th>
-        <th>Rol</th>
-        <th>Editar</th>
-        <th>Eliminar</th>
-    </tr>
-
-    @for (usuario of usuarios; track $index) {
+<div class="container">
+    <div class="row">
+      <div class="col-md-6">
+        <input type="text" class="form-control mb-2" [(ngModel)]="filtro" placeholder="Buscar por nombre o correo electrónico">
+      </div>
+      <div class="col-md-6">
+        <button class="btn btn-primary mb-2 float-right" (click)="openCrearUsuarioModal()">Crear usuario</button>
+      </div>
+    </div>
+  
+    <div class="table-responsive">
+    <table class="table">
+      <thead>
         <tr>
-            <td>{{ usuario.nombre }}</td>
-            <td>{{ usuario.correoElectronico }}</td>
-            <td>{{ usuario.rol }}</td>
-            <td><button class="editar-btn">Editar</button></td>
-            <td><button class="eliminar-btn">Eliminar</button></td>
+          <th scope="col">Nombre</th>
+          <th scope="col">Correo electrónico</th>
+          <th scope="col">Rol</th>
+          <th scope="col">Editar</th>
+          <th scope="col">Eliminar</th>
         </tr>
-    }
-</table>
+      </thead>
+      <tbody>
+        @for (usuario of usuarios | filter: filtro; track $index) {
+            <tr>
+                <td>{{ usuario.nombre }}</td>
+                <td>{{ usuario.correoElectronico }}</td>
+                <td>{{ usuario.rol }}</td>
+                <td><button class="editar-btn" (click)="openEditarUsuarioModal(usuario)">Editar</button></td>
+                <td><button class="eliminar-btn" (click)="eliminarUsuario(usuario.correoElectronico)">Eliminar</button></td>
+            </tr>
+        }
+      </tbody>
+    </table>
+    </div>
+  </div>
+  
