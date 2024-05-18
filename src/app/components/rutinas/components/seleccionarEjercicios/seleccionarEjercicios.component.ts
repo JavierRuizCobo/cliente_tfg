@@ -1,5 +1,5 @@
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
-import { Ejercicio } from '../../../../core/models/ejercicio.model';
+import { Exercise } from '../../../../core/models/ejercicio.model';
 import { EjercicioService } from '../../../ejercicios/services/ejercicio.service';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import { CommonModule } from '@angular/common';
@@ -13,8 +13,8 @@ import { CommonModule } from '@angular/common';
 })
 export class SeleccionarEjerciciosComponent implements OnInit {
 
-  ejerciciosDisponibles: Ejercicio[] = [];
-  ejerciciosSeleccionados: Ejercicio[] = [];
+  ejerciciosDisponibles: Exercise[] = [];
+  ejerciciosSeleccionados: Exercise[] = [];
   activeModal: any;
 
   constructor(private ejercicioService: EjercicioService,
@@ -29,11 +29,11 @@ export class SeleccionarEjerciciosComponent implements OnInit {
     console.log(this.ejerciciosDisponibles)
   }
 
-  toggleSeleccion(event: any, ejercicio: Ejercicio) {
+  toggleSeleccion(event: any, ejercicio: Exercise) {
     if (event.target.checked) {
       this.ejerciciosSeleccionados.push(ejercicio);
     } else {
-      const index = this.ejerciciosSeleccionados.findIndex(e => e.nombre === ejercicio.nombre);
+      const index = this.ejerciciosSeleccionados.findIndex(e => e.name === ejercicio.name);
       if (index !== -1) {
         this.ejerciciosSeleccionados.splice(index, 1);
       }
@@ -46,7 +46,7 @@ export class SeleccionarEjerciciosComponent implements OnInit {
     this.ejerciciosSeleccionados = [];
   }
 
-  @Output() ejerciciosSeleccionadosEvent = new EventEmitter<Ejercicio[]>();
+  @Output() ejerciciosSeleccionadosEvent = new EventEmitter<Exercise[]>();
 
   emitirSeleccion() {
     this.ejerciciosSeleccionadosEvent.emit(this.ejerciciosSeleccionados);

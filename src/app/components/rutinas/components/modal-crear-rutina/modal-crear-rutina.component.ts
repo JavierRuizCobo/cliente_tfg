@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { FormsModule, NgForm } from '@angular/forms';
-import { Ejercicio } from '../../../../core/models/ejercicio.model';
+import { Exercise } from '../../../../core/models/ejercicio.model';
 import { EjercicioService } from '../../../ejercicios/services/ejercicio.service';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { SeleccionarEjerciciosComponent } from '../seleccionarEjercicios/seleccionarEjercicios.component';
@@ -17,7 +17,7 @@ import { Rutina } from '../../../../core/models/rutina.model';
 })
 export class ModalCrearRutinaComponent {
 
-  ejercicios: Ejercicio[] = [];
+  ejercicios: Exercise[] = [];
 
   constructor(private modalService: NgbModal, private rutinasService: RutinasService) {}
 
@@ -27,7 +27,7 @@ export class ModalCrearRutinaComponent {
       size:'xl'
     });
 
-    modalRef.componentInstance.ejerciciosSeleccionadosEvent.subscribe((ejercicios: Ejercicio[]) => {
+    modalRef.componentInstance.ejerciciosSeleccionadosEvent.subscribe((ejercicios: Exercise[]) => {
       console.log("Ejercicios seleccionados:", ejercicios);
       this.ejercicios = ejercicios;
       // Aquí puedes hacer lo que quieras con los ejercicios seleccionados

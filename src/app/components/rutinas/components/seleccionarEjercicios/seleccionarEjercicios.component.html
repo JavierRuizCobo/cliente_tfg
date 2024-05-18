@@ -5,7 +5,7 @@
     <h3>Ejercicios Disponibles</h3>
     @for (ejercicio of ejerciciosDisponibles; track $index) {
       <div>
-        <input type="checkbox" (change)="toggleSeleccion($event, ejercicio)"> {{ ejercicio.nombre }}
+        <input type="checkbox" (change)="toggleSeleccion($event, ejercicio)"> {{ ejercicio.name }}
       </div>
     }
   </div>
@@ -14,7 +14,7 @@
     <h3>Ejercicios Seleccionados</h3>
     @for (ejercicio of ejerciciosSeleccionados; track $index) {
       <div>
-        {{ ejercicio.nombre }}      
+        {{ ejercicio.name }}      
       </div>
     }
   </div>
