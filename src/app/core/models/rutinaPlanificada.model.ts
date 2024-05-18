@@ -1,4 +1,4 @@
-import { Ejercicio } from "./ejercicio.model";
+import { Exercise } from "./ejercicio.model";
 
 export interface RutinaPlanificada {
     id?: string;
@@ -6,5 +6,5 @@ export interface RutinaPlanificada {
     descripcion: string;
     fecha: Date;
     realizada : boolean;
-    ejercicios?: Ejercicio[];
+    ejercicios?: Exercise[];
 }

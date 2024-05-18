@@ -14,13 +14,12 @@
 
     <div class="lista-ejercicios">
         @for (ejercicio of ejerciciosFiltrados; track $index) {
-
             <div class="ejercicio" (click)="consultarEjercicio(ejercicio)">
-                <strong>Nombre:</strong> {{ ejercicio.nombre }}<br>
-                <strong>Dificultad:</strong> {{ ejercicio.dificultad }}<br>
-                <strong>Grupo Muscular:</strong> {{ ejercicio.grupoMuscular }}<br><br>
+                <strong>Nombre:</strong> {{ ejercicio.name }}<br>
+                <strong>Dificultad:</strong> {{ ejercicio.difficulty }}<br>
+                <strong>Grupo Muscular:</strong> {{ ejercicio.description }}<br><br>
                 @if (esMonitorOCoordinador()) {
-                    <button class="eliminar-btn" (click)="eliminarEjercicio(ejercicio)">Eliminar</button>
+                    <button class="eliminar-btn" (click)="eliminarEjercicio(ejercicio); $event.stopPropagation()">Eliminar</button>
                 }
             </div>
         }

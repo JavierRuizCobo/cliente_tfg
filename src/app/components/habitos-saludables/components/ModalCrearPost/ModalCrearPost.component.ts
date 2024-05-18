@@ -14,9 +14,9 @@ import { CommonModule } from '@angular/common';
 })
 export class ModalCrearPostComponent implements OnInit {
 
-  nuevoPost: Post = {
+  newPost: Post = {
     title: '',
-    text: ''
+    content: ''
   };
 
   constructor(public activeModal: NgbActiveModal, private postService: HabitosSaludablesService) {}
@@ -25,7 +25,14 @@ export class ModalCrearPostComponent implements OnInit {
 
   crearPost(form: { valid: any; }): void {
     if (form.valid) {
-      this.postService.agregarPost(this.nuevoPost);
+      console.log(this.newPost)
+      this.postService.agregarPost(this.newPost).subscribe({
+        next: (res) => {
+          console.log(res);
+        },
+        error: (e) => console.error(e)
+      });
+
       this.activeModal.close('Post creado');
     }
   }

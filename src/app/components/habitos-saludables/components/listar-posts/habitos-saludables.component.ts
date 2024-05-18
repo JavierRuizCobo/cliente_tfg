@@ -23,23 +23,45 @@ export class HabitosSaludablesComponent {
   ) {}
 
   ngOnInit(): void {
-    this.PostService.getPosts().subscribe(posts => {
-      this.posts = posts;
+    this.getALlPosts();
+  }
+
+
+  getALlPosts(): void{
+    this.PostService.getPosts()
+      .subscribe({
+        next: (data) => {
+          this.posts = data;
+          console.log(data);
+        },
+        error: (e) => console.error(e)
+      });
+  }
+
+  eliminarPost(id : string) {
+    this.PostService.eliminarPost(id).subscribe({
+      next: (res) => {
+        console.log(res);
+        this.getALlPosts();
+      },
+      error: (e) => console.error(e)
     });
-  }
-
-  esMonitorOCoordinador(): boolean {
-    return true; // Cambiar esto por la lógica real de tu aplicación
-  }
-
-  eliminarPost(post: Post) {
-    this.PostService.eliminarPost(post);
   }
 
   abrirModalCrearPost() {
-    this.modalService.open(ModalCrearPostComponent, {
+    const modalRef = this.modalService.open(ModalCrearPostComponent, {
       centered: true
     });
+
+    modalRef.result.then((result) => {
+      // Esta función se ejecutará cuando se cierre el modal
+      // Aquí puedes poner cualquier lógica que necesites para actualizar los posts
+      this.getALlPosts();
+    }, (reason) => {
+      // Esta función se ejecutará si se cierra el modal de alguna manera inesperada
+      console.log(`Modal cerrado de manera inesperada: ${reason}`);
+    });
+
   }
 
   get totalPages(): number {

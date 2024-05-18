@@ -10,11 +10,11 @@
       <form #crearPostForm="ngForm" (ngSubmit)="crearPost(crearPostForm)">
         <div class="form-group">
           <label for="titulo">Título:</label>
-          <input type="text" class="form-control" id="titulo" name="titulo" [(ngModel)]="nuevoPost.title" required>
+          <input type="text" class="form-control" id="titulo" name="titulo" [(ngModel)]="newPost.title" required>
         </div>
         <div class="form-group">
           <label for="contenido">Contenido:</label>
-          <textarea class="form-control" id="contenido" name="contenido" [(ngModel)]="nuevoPost.text" rows="5" required></textarea>
+          <textarea class="form-control" id="contenido" name="contenido" [(ngModel)]="newPost.content" rows="5" required></textarea>
         </div>
         <button type="submit" class="btn btn-primary">Guardar</button>
         <button type="button" class="btn btn-secondary" (click)="activeModal.dismiss('Close click')">Cerrar</button>
