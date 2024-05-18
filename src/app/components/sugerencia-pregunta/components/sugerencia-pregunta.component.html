@@ -1,21 +1,19 @@
-<div class="container">
-  <h2>Enviar sugerencia o pregunta</h2>
-  <form [formGroup]="contactForm" (ngSubmit)="onSubmit()">
-    <div class="form-group">
-      <label for="name">Nombre:</label>
-      <input type="text" id="name" class="form-control" formControlName="name" required>
+<form [formGroup]="mailForm" (ngSubmit)="onSubmit()">
+  <div>
+    <label for="subject">Asunto:</label>
+    <input id="subject" formControlName="subject" type="text" />
+    <div *ngIf="mailForm?.get('subject')?.invalid && (mailForm?.get('subject')?.dirty || mailForm?.get('subject')?.touched)">
+      <small *ngIf="mailForm?.get('subject')?.errors?.['required']">El campo Asunto es requerido.</small>
     </div>
+  </div>
 
-    <div class="form-group">
-      <label for="email">Correo electrónico:</label>
-      <input type="email" id="email" class="form-control" formControlName="email" required>
+  <div>
+    <label for="message">Mensaje:</label>
+    <textarea id="message" formControlName="message"></textarea>
+    <div *ngIf="mailForm?.get('message')?.invalid && (mailForm?.get('message')?.dirty || mailForm?.get('message')?.touched)">
+      <small *ngIf="mailForm?.get('message')?.errors?.['required']">El campo Mensaje es requerido.</small>
     </div>
+  </div>
 
-    <div class="form-group">
-      <label for="message">Mensaje:</label>
-      <textarea id="message" class="form-control" formControlName="message" required></textarea>
-    </div>
-
-    <button type="submit" class="btn btn-primary">Enviar</button>
-  </form>
-</div>
+  <button type="submit" [disabled]="mailForm.invalid">Enviar</button>
+</form>
