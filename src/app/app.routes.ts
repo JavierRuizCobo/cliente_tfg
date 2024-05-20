@@ -25,7 +25,7 @@ export const routes: Routes = [
     },
     { 
       path: 'rutinas', 
-      loadChildren: () => import('./components/rutinas/rutinas.routes').then(m => m.RutinasRoutes)
+      loadChildren: () => import('./components/rutinas/routines.routes').then(m => m.RutinasRoutes)
     }
 ];
 

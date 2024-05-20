@@ -3,34 +3,33 @@ import { FormsModule, NgForm } from '@angular/forms';
 import { Exercise } from '../../../../core/models/ejercicio.model';
 import { EjercicioService } from '../../../ejercicios/services/ejercicio.service';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
-import { SeleccionarEjerciciosComponent } from '../seleccionarEjercicios/seleccionarEjercicios.component';
+import { SelectExercisesComponent } from '../modal-select-exercises/select-exercises.component';
 import { CommonModule } from '@angular/common';
-import { RutinasService } from '../../services/rutinas.service';
-import { Rutina } from '../../../../core/models/rutina.model';
+import { RoutinesService } from '../../services/routines.service';
+import { Routine } from '../../../../core/models/routine.model';
 
 @Component({
   selector: 'app-modal-crear-rutina',
   standalone: true,
   imports: [FormsModule, CommonModule],
-  templateUrl: './modal-crear-rutina.component.html',
-  styleUrl: './modal-crear-rutina.component.css'
+  templateUrl: './modal-create-routine.component.html',
+  styleUrl: './modal-create-routine.component.css'
 })
-export class ModalCrearRutinaComponent {
+export class ModalCreateRoutineComponent {
 
   ejercicios: Exercise[] = [];
 
-  constructor(private modalService: NgbModal, private rutinasService: RutinasService) {}
+  constructor(private modalService: NgbModal, private rutinasService: RoutinesService) {}
 
   openModal() {
-    const modalRef = this.modalService.open(SeleccionarEjerciciosComponent, {
+    const modalRef = this.modalService.open(SelectExercisesComponent, {
       centered: true,
       size:'xl'
     });
 
-    modalRef.componentInstance.ejerciciosSeleccionadosEvent.subscribe((ejercicios: Exercise[]) => {
+    modalRef.componentInstance.selectedExercisesEvent.subscribe((ejercicios: Exercise[]) => {
       console.log("Ejercicios seleccionados:", ejercicios);
       this.ejercicios = ejercicios;
-      // Aquí puedes hacer lo que quieras con los ejercicios seleccionados
     });
   }
 
@@ -41,15 +40,18 @@ export class ModalCrearRutinaComponent {
       console.log('Descripcion de la rutina: ', form.value.descripcion)
       console.log('Ejercicios:', this.ejercicios);
 
-      const nuevaRutina : Rutina = {
-        nombre: form.value.nombre,
-        descripcion: form.value.descripcion,
-        ejercicios: this.ejercicios,
-        id: ''
+      const nuevaRutina : any = {
+        name: form.value.nombre,
+        description: form.value.descripcion,
+        exercises: this.ejercicios.map(exercise => exercise._id),
       };
 
-      this.rutinasService.createRoutine(nuevaRutina);
-      // Aquí puedes enviar la rutina a tu backend o hacer lo que necesites con los datos
+      this.rutinasService.createRoutine(nuevaRutina).subscribe({
+        next: (data) =>{
+          console.log(data);
+        },
+        error : (e) => console.error(e)
+      });
     } else {
       console.log('Rutina inválida');
     }

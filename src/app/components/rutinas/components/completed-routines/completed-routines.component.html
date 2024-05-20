@@ -1,0 +1,12 @@
+<div class="card-container">
+    <div *ngFor="let routine of completedRoutines" class="card">
+      <p>Fecha: {{ routine.date | date }}</p>
+      <div *ngFor="let exercise of routine.exercises">
+        <h3>{{ exercise.exercise?.name }}</h3>
+        <p>Descripción: {{ exercise.exercise?.description }}</p>
+        <p>Dificultad: {{ exercise.exercise?.difficulty }}</p>
+        <!-- Agrega más detalles del ejercicio según tu modelo -->
+      </div>
+    </div>
+  </div>
+  

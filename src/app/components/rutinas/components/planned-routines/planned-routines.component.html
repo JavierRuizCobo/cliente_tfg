@@ -1,0 +1,17 @@
+<button (click)="planNewRoutine()">Planificar nueva rutina</button>
+
+<div *ngIf="plannedRoutines.length === 0">
+  <h3>No hay rutinas planificadas.</h3>
+</div>
+
+<div class="routine-row" *ngFor="let routine of plannedRoutines">
+  <div class="routine-info">
+    <h2>{{ routine.name }}</h2>
+    <p>Fecha: {{ routine.date }}</p>
+  </div>
+
+  <div class="routine-actions">
+    <button (click)="deletePlannedRoutine(routine)">Eliminar</button>
+    <button (click)="completePlannedRoutine(routine)">Realizar</button>
+  </div>
+</div>
