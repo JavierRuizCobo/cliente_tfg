@@ -89,7 +89,7 @@ export class PlanRoutineComponent implements OnInit {
         next: (res) =>{
           console.log(res);
           this.showModal = true;
-          this.router.navigate(['/routines/detail/', this.routineToPlan?._id]);
+          this.router.navigate(['/rutinas/detalle/', this.routineToPlan?._id]);
         }, 
         error:(e) => console.error(e)
       })

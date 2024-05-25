@@ -1,18 +1,25 @@
-<header class="header">
-  <nav>
-    <div class="logo">
-      <a href="#">Gym<span style="color: #df0a0a;">App</span></a>
-    </div>
-    <input type="checkbox" id="menu-toggle">
-    <label for="menu-toggle" class="menu-icon">&#9776;</label>
-    <ul class="menu">
-      <li><a routerLink="/ejercicios">Ejercicios</a></li>
-      <li><a routerLink="/rutinas">Rutinas</a></li>
-      <li><a routerLink="/calendario">Calendario</a></li>
-      <li><a routerLink="/habitossaludables">Hábitos saludables</a></li>
-      <li><a routerLink="/sugerencia">Sugerencias</a></li>
-      <li><a routerLink="/usuarios">Usuarios</a></li>
-    </ul>
-  </nav>
-</header>
-<router-outlet></router-outlet>
+@if (isAuthenticated) {
+  <header class="header">
+    <nav>
+      <div class="logo">
+        <a href="#">Gym<span style="color: #df0a0a;">App</span></a>
+      </div>
+      <input type="checkbox" id="menu-toggle">
+      <label for="menu-toggle" class="menu-icon">&#9776;</label>
+      <ul class="menu">
+        <li><a routerLink="/ejercicios">Ejercicios</a></li>
+        <li><a routerLink="/rutinas">Rutinas</a></li>
+        <li><a routerLink="/calendario">Calendario</a></li>
+        <li><a routerLink="/habitossaludables">Hábitos saludables</a></li>
+        <li><a routerLink="/sugerencia">Sugerencias</a></li>
+        <li *ngIf="userRole === 'coordinador'"><a routerLink="/usuarios">Usuarios</a></li>
+      </ul>
+    </nav>
+  </header>
+  <router-outlet></router-outlet>
+
+} @else {
+  <app-login></app-login>
+
+}
+

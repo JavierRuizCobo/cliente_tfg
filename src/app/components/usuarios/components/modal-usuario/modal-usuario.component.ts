@@ -16,9 +16,9 @@ export class ModalUsuarioComponent {
   @Input() usuario: Usuario | undefined;
 
   nuevoUsuario: Usuario = {
-    nombre: '',
-    correoElectronico: '',
-    rol: ''
+    name: '',
+    email: '',
+    role: ''
   };
 
   roles: string[] = ['Cliente', 'Monitor', 'Coordinador'];
@@ -35,9 +35,9 @@ export class ModalUsuarioComponent {
     if (form.valid) {
 
       if (this.usuario) {
-        this.usuarioService.actualizarUsuario(this.nuevoUsuario);
+        this.usuarioService.updateUser(this.nuevoUsuario);
       } else {
-        this.usuarioService.crearUsuario(this.nuevoUsuario);
+        this.usuarioService.createUser(this.nuevoUsuario);
       }
       this.activeModal.close('Post creado');
     }

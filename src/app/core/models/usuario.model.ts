@@ -1,6 +1,7 @@
 export interface Usuario {
-    nombre: string;
-    correoElectronico: string;
-    rol: string;
+    _id ?: string;
+    name: string;
+    email: string;
+    role: string;
   }
   

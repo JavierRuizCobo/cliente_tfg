@@ -35,7 +35,7 @@ export class PlannedRoutinesComponent {
       this.plannedRoutinesService.getPlannedRoutinesByRoutineId(this.routineId).subscribe({
         next: (data: PlannedRoutine[]) => {
           console.log(data);
-          this.plannedRoutines = data;
+          this.plannedRoutines = data.filter(routine => routine.completed===false);
           console.log(this.plannedRoutines);
         },
         error: (e) => console.error(e)
@@ -57,6 +57,7 @@ export class PlannedRoutinesComponent {
   }
 
   completePlannedRoutine(routine : any){
+    this.router.navigate(['/rutinas/realizar', routine._id]);
 
   }
 

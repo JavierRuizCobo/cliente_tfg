@@ -25,6 +25,10 @@ export class PlannedRoutinesService {
     return this.http.put<PlannedRoutine>(`${this.apiUrl}/${id}`, plannedRoutine);
   }
 
+  getPlannedRoutineById(id: string): Observable<PlannedRoutine> {
+    return this.http.get<PlannedRoutine>(`${this.apiUrl}/${id}`);
+  }
+
   // Método para obtener todas las rutinas planificadas
   getAllPlannedRoutines(): Observable<PlannedRoutine[]> {
     return this.http.get<PlannedRoutine[]>(this.apiUrl);

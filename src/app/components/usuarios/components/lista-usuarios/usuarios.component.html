@@ -17,16 +17,18 @@
           <th scope="col">Rol</th>
           <th scope="col">Editar</th>
           <th scope="col">Eliminar</th>
+          <th scope="col">Ver Rutinas</th>
         </tr>
       </thead>
       <tbody>
         @for (usuario of usuarios | filter: filtro; track $index) {
             <tr>
-                <td>{{ usuario.nombre }}</td>
-                <td>{{ usuario.correoElectronico }}</td>
-                <td>{{ usuario.rol }}</td>
+                <td>{{ usuario.name }}</td>
+                <td>{{ usuario.email }}</td>
+                <td>{{ usuario.role }}</td>
                 <td><button class="editar-btn" (click)="openEditarUsuarioModal(usuario)">Editar</button></td>
-                <td><button class="eliminar-btn" (click)="eliminarUsuario(usuario.correoElectronico)">Eliminar</button></td>
+                <td><button class="eliminar-btn" (click)="eliminarUsuario(usuario._id)">Eliminar</button></td>
+                <td><button class="ver-rutinas-btn" (click)="verRutinas(usuario)">Ver Rutinas</button></td>
             </tr>
         }
       </tbody>

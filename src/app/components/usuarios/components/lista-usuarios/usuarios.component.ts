@@ -26,7 +26,17 @@ export class ListaUsuariosComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    this.usuarios = this.usuarioService.getUsuarios();
+    this.getUsers();
+  }
+
+  getUsers(){
+    this.usuarioService.getUsers().subscribe({
+      next: (data) => {
+        console.log(data)
+        this.usuarios = data;
+      }, error: (e) => console.error(e)
+    });
+
   }
 
 
@@ -45,7 +55,17 @@ export class ListaUsuariosComponent implements OnInit {
   }
 
   eliminarUsuario(correoElectronico : string){
-    this.usuarioService.eliminarUsuario(correoElectronico)
+    this.usuarioService.deleteUser(correoElectronico).subscribe({
+      next: (res) =>{
+        console.log(res);
+        this.getUsers();
+      }, error : (e) => console.error(e)
+    })
+  }
+
+  verRutinas(usuario: Usuario): void {
+    console.log(`Ver rutinas del usuario: ${usuario.name}`);
+    // Aquí puedes abrir un modal, redirigir a otra página o cualquier otra acción para ver las rutinas
   }
 }
 
