@@ -22,6 +22,7 @@ export class EjerciciosComponent {
   ejercicios: Exercise[] = [];
   ejerciciosFiltrados: Exercise[] = [];
   filtroDificultad: string = 'todas';
+  isCoordinatorOMOnitor : boolean = false;
 
   constructor(
     private ejercicioService: EjercicioService,
@@ -32,6 +33,7 @@ export class EjerciciosComponent {
 
   ngOnInit(): void {
     this.getAllExercises();
+    this.isCoordinatorOMOnitor = this.esMonitorOCoordinador();
   }
 
   getAllExercises(): void{
