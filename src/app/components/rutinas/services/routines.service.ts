@@ -15,6 +15,10 @@ export class RoutinesService {
     return this.http.get<Routine[]>(this.apiUrl);
   }
 
+  getRoutinesByUserId(userId: string): Observable<Routine[]> {
+    return this.http.get<Routine[]>(`${this.apiUrl}?userId=${userId}`);
+  }
+
   getRoutine(id: string | null): Observable<Routine> {
     return this.http.get<Routine>(`${this.apiUrl}/${id}`);
   }

@@ -29,7 +29,7 @@ export class PlannedRoutinesComponent {
   
   
   getPlannedRoutines() {
-    this.routineId = this.route.snapshot.paramMap.get('id');
+    this.routineId = this.route.snapshot.paramMap.get('routineId');
 
     if (this.routineId) {
       this.plannedRoutinesService.getPlannedRoutinesByRoutineId(this.routineId).subscribe({
@@ -63,7 +63,7 @@ export class PlannedRoutinesComponent {
 
   planNewRoutine(){
 
-    this.routineId = this.route.snapshot.paramMap.get('id');
+    this.routineId = this.route.snapshot.paramMap.get('routineId');
 
 
     this.router.navigate(['/rutinas/planificar', this.routineId]);

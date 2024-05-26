@@ -18,8 +18,8 @@ export class UsuarioService {
   }
 
   createUser(user : Usuario){
-    
 
+    return this.http.get<Usuario[]>(this.apiUrl, {withCredentials : true});
   }
 
   updateUser(user : Usuario){

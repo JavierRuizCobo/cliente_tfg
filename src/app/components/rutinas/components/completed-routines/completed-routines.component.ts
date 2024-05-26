@@ -28,7 +28,7 @@ export class CompletedRoutinesComponent {
   
   
   getPlannedRoutines() {
-    this.routineId = this.route.snapshot.paramMap.get('id');
+    this.routineId = this.route.snapshot.paramMap.get('routineId');
 
     if (this.routineId) {
       this.plannedRoutinesService.getPlannedRoutinesByRoutineId(this.routineId).subscribe({

@@ -1,11 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { BehaviorSubject, Observable, tap } from 'rxjs';
+import { BehaviorSubject, Observable, catchError, map, of, tap } from 'rxjs';
 
-export interface AuthResponse {
-  authenticated: boolean;
-  role?: string;
-}
 
 @Injectable({
   providedIn: 'root'
@@ -13,32 +9,46 @@ export interface AuthResponse {
 export class AuthService {
 
   private apiUrl = 'http://localhost:3000/auth';
-  private loggedIn = new BehaviorSubject<boolean>(false);
-  private userRole = new BehaviorSubject<string | null>(null);
 
   constructor(private http: HttpClient) {}
+
+
+  isAuthenticated(): Observable<boolean> {
+    return this.http.get<{ authenticated: boolean }>(`${this.apiUrl}/esta-autenticado`).pipe(
+      map(response => response.authenticated),
+      catchError(() => of(false))
+    );
+  }
+
+  hasRole(role: string): Observable<boolean> {
+    return this.http.get<{ authorized: boolean }>(`${this.apiUrl}/rol/${role}`).pipe(
+      map(response => response.authorized),
+      catchError(() => of(false))
+    );
+  }
+
+  hasAnyRole(roles: string[]): Observable<boolean> {
+    console.log(roles);
+
+    const rolesParam = roles.join(',');
+    console.log(rolesParam);
+    return this.http.get<{ authorized: boolean }>(`${this.apiUrl}/comprobar-roles?roles=${rolesParam}`).pipe(
+      map(response => response.authorized),
+      catchError(() => of(false))
+    );
+  }
 
   login(email: string, password: string): Observable<any> {
     return this.http.post(`${this.apiUrl}/iniciar-sesion`, { email, password }, { withCredentials: true })
       .pipe(tap((response: any) => {
         console.log('Login response:', response);
-        this.checkAuth().subscribe();
       }));
   }
 
-  checkAuth(): Observable<AuthResponse> {
-    return this.http.get<AuthResponse>(`${this.apiUrl}/esta-autenticado`, { withCredentials: true })
-      .pipe(tap(response => {
-        this.loggedIn.next(response.authenticated);
-        this.userRole.next(response.role || null);
-      }));
+  logout(): Observable<void> {
+    // Aquí llama al endpoint correspondiente en tu servidor para cerrar sesión
+    // Por ejemplo, si tu servidor tiene un endpoint /logout que elimina el token de sesión:
+    return this.http.post<void>(`${this.apiUrl}/cerrar-sesion`, null);
   }
 
-  isAuthenticated(): Observable<boolean> {
-    return this.loggedIn.asObservable();
-  }
-
-  getUserRole(): Observable<string | null> {
-    return this.userRole.asObservable();
-  }
 }

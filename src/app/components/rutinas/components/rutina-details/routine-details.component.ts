@@ -27,7 +27,8 @@ export class RoutineDetailsComponent implements OnInit {
   }
 
   getRoutineDetail(): void {
-    const id = this.route.snapshot.paramMap.get('id');
+    const id = this.route.snapshot.paramMap.get('routineId');
+    console.log(id)
     if (id !== null) {
       this.routineService.getRoutine(id).subscribe({
         next: (data: Routine | undefined) => {

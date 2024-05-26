@@ -1,6 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
-import { RouterLink, RouterModule, RouterOutlet } from '@angular/router';
+import { Router, RouterLink, RouterModule, RouterOutlet } from '@angular/router';
 import { AuthService } from '../../core/service/auth.service';
 import { LoginComponent } from "../../core/components/login/login.component";
 
@@ -14,20 +14,43 @@ import { LoginComponent } from "../../core/components/login/login.component";
 })
 export class HeaderComponent {
 
-  userRole: string | null = null;
-
   isAuthenticated: boolean = false;
+  isUser: boolean = false;
+  isMonitorOrCoordinator: boolean = false;
 
-  constructor(private authService: AuthService) { }
+  constructor(private authService: AuthService, private router : Router) {}
 
   ngOnInit(): void {
-
-    this.authService.checkAuth().subscribe(response => {
-      this.isAuthenticated = response.authenticated;
+    this.authService.isAuthenticated().subscribe(isAuthenticated => {
+      this.isAuthenticated = isAuthenticated;
+      if (isAuthenticated) {
+        this.authService.hasAnyRole(['user']).subscribe(isUser => {
+          this.isUser = isUser;
+        });
+        this.authService.hasAnyRole(['monitor', 'coordinator']).subscribe(isMonitorOrCoordinator => {
+          this.isMonitorOrCoordinator = isMonitorOrCoordinator;
+        });
+      }
     });
+  }
 
-    this.authService.getUserRole().subscribe(role => {
-      this.userRole = role;
-    });
+
+  logout(): void {
+
+    const confirmed = window.confirm('¿Estás seguro de que deseas cerrar sesión?');
+    if (confirmed) {
+      this.authService.logout().subscribe({
+        next: (res) =>{
+          console.log(res);
+  
+          this.authService.isAuthenticated().subscribe(isAuthenticated => {
+            this.isAuthenticated = isAuthenticated;
+          });
+  
+          this.router.navigate(['/login']);        
+        }
+      });
+    }
+    
   }
 }

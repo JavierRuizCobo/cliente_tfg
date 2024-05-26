@@ -5,6 +5,7 @@ import { EjercicioService } from '../../services/ejercicio.service';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { ModalCrearEjercicioComponent } from '../modal-crear-ejercicio/modal-crear-ejercicio.component';
 import { Router } from '@angular/router';
+import { AuthService } from '../../../../core/service/auth.service';
 
 
 @Component({
@@ -25,7 +26,8 @@ export class EjerciciosComponent {
   constructor(
     private ejercicioService: EjercicioService,
     private modalService: NgbModal,
-    private router: Router
+    private router: Router,
+    private authService : AuthService
   ) {}
 
   ngOnInit(): void {
@@ -58,7 +60,13 @@ export class EjerciciosComponent {
 
   esMonitorOCoordinador(): boolean {
 
-    return true; // Cambiar esto por la lógica real de tu aplicación
+    this.authService.hasAnyRole(['monitor', 'coordinator']).subscribe({
+      next: () => {
+        return true;
+      }
+    });
+
+    return false; 
   }
 
   eliminarEjercicio(ejercicio: Exercise) {

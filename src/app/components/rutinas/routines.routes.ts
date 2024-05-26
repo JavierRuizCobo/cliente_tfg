@@ -6,9 +6,9 @@ import { DoRoutineComponent } from './components/do-routine/do-routine.component
 
 const routes: Routes = [
   { path: '', component: RoutinesComponent },
-  { path: 'detalle/:id', component: RoutineDetailsComponent },
-  { path: 'planificar/:id', component: PlanRoutineComponent },
-  { path: 'realizar/:id', component: DoRoutineComponent}
+  { path: 'detalle/:routineId', component: RoutineDetailsComponent },
+  { path: 'planificar/:routineId', component: PlanRoutineComponent },
+  { path: 'realizar/:routineId', component: DoRoutineComponent}
 ];
 
 export const RutinasRoutes = routes

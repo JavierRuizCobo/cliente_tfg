@@ -5,6 +5,7 @@ import { FilterPipePipe } from '../../../../shared/pipes/filterPipe.pipe';
 import { FormsModule } from '@angular/forms';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { ModalUsuarioComponent } from '../modal-usuario/modal-usuario.component';
+import { Router } from '@angular/router';
 
 
 @Component({
@@ -22,7 +23,8 @@ export class ListaUsuariosComponent implements OnInit {
   filtro: string = '';
 
   constructor(private usuarioService: UsuarioService,
-    private modalService : NgbModal
+    private modalService : NgbModal,
+    private router: Router
   ) { }
 
   ngOnInit(): void {
@@ -65,7 +67,8 @@ export class ListaUsuariosComponent implements OnInit {
 
   verRutinas(usuario: Usuario): void {
     console.log(`Ver rutinas del usuario: ${usuario.name}`);
-    // Aquí puedes abrir un modal, redirigir a otra página o cualquier otra acción para ver las rutinas
+
+    this.router.navigate([`/usuarios/${usuario._id}/rutinas`]);
   }
 }
 

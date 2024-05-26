@@ -2,18 +2,19 @@
   <header class="header">
     <nav>
       <div class="logo">
-        <a href="#">Gym<span style="color: #df0a0a;">App</span></a>
+        <a href="#">UNEAT<span style="color: #df0a0a;">GYM</span></a>
       </div>
       <input type="checkbox" id="menu-toggle">
       <label for="menu-toggle" class="menu-icon">&#9776;</label>
       <ul class="menu">
         <li><a routerLink="/ejercicios">Ejercicios</a></li>
-        <li><a routerLink="/rutinas">Rutinas</a></li>
-        <li><a routerLink="/calendario">Calendario</a></li>
-        <li><a routerLink="/habitossaludables">Hábitos saludables</a></li>
-        <li><a routerLink="/sugerencia">Sugerencias</a></li>
-        <li *ngIf="userRole === 'coordinador'"><a routerLink="/usuarios">Usuarios</a></li>
-      </ul>
+      <li *ngIf="isUser"><a routerLink="/rutinas">Rutinas</a></li>
+      <li *ngIf="isUser"><a routerLink="/calendario">Calendario</a></li>
+      <li><a routerLink="/habitossaludables">Hábitos saludables</a></li>
+      <li *ngIf="isUser"><a routerLink="/sugerencia">Sugerencias</a></li>
+      <li *ngIf="isMonitorOrCoordinator"><a routerLink="/usuarios">Usuarios</a></li>
+      <li><button class="logout-button" (click)="logout()">Cerrar Sesión</button></li>
+    </ul>
     </nav>
   </header>
   <router-outlet></router-outlet>
