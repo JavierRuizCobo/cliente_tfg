@@ -1,7 +1,7 @@
 <div class="container">
     <div class="row">
       <div class="col-md-6">
-        <input type="text" class="form-control mb-2" [(ngModel)]="filtro" placeholder="Buscar por nombre o correo electrónico">
+        <input type="text" class="form-control mb-2" [(ngModel)]="filtro" placeholder="Buscar por nombre">
       </div>
       <div class="col-md-6">
         <button class="btn btn-primary mb-2 float-right" (click)="openCrearUsuarioModal()">Crear usuario</button>
@@ -15,9 +15,14 @@
           <th scope="col">Nombre</th>
           <th scope="col">Correo electrónico</th>
           <th scope="col">Rol</th>
-          <th scope="col">Editar</th>
-          <th scope="col">Eliminar</th>
-          <th scope="col">Ver Rutinas</th>
+          @if (authorized) {
+            <th scope="col">Editar</th>
+            <th scope="col">Eliminar</th>
+          }
+          @if (authorizedToViewRoutines) {
+            <th scope="col">Ver Rutinas</th>
+            
+          }
         </tr>
       </thead>
       <tbody>
@@ -26,9 +31,14 @@
                 <td>{{ usuario.name }}</td>
                 <td>{{ usuario.email }}</td>
                 <td>{{ usuario.role }}</td>
-                <td><button class="editar-btn" (click)="openEditarUsuarioModal(usuario)">Editar</button></td>
-                <td><button class="eliminar-btn" (click)="eliminarUsuario(usuario._id)">Eliminar</button></td>
-                <td><button class="ver-rutinas-btn" (click)="verRutinas(usuario)">Ver Rutinas</button></td>
+                @if (authorized) {
+                  <td><button class="editar-btn" (click)="openEditarUsuarioModal(usuario)">Editar</button></td>
+                  <td><button class="eliminar-btn" (click)="eliminarUsuario(usuario._id)">Eliminar</button></td>
+                }
+                @if(authorizedToViewRoutines){
+                  <td><button class="ver-rutinas-btn" (click)="verRutinas(usuario)">Ver Rutinas</button></td>
+                  
+                }
             </tr>
         }
       </tbody>

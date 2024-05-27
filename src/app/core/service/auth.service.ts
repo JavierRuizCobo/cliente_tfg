@@ -28,10 +28,8 @@ export class AuthService {
   }
 
   hasAnyRole(roles: string[]): Observable<boolean> {
-    console.log(roles);
 
     const rolesParam = roles.join(',');
-    console.log(rolesParam);
     return this.http.get<{ authorized: boolean }>(`${this.apiUrl}/comprobar-roles?roles=${rolesParam}`).pipe(
       map(response => response.authorized),
       catchError(() => of(false))

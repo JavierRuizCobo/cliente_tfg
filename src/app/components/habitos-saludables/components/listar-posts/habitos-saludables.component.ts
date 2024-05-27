@@ -4,6 +4,7 @@ import { Post } from '../../../../core/models/post.model';
 import { HabitosSaludablesService } from '../../services/habitos-saludables.service';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { ModalCrearPostComponent } from '../ModalCrearPost/ModalCrearPost.component';
+import { AuthService } from '../../../../core/service/auth.service';
 
 @Component({
   selector: 'app-habitos-saludables',
@@ -17,13 +18,17 @@ export class HabitosSaludablesComponent {
   posts: Post[] = [];
   currentPage: number = 1;
   postsPerPage: number = 1;
+  authorized : boolean = false;
 
   constructor(private PostService: HabitosSaludablesService,
-    private modalService: NgbModal
+    private modalService: NgbModal,
+    private authService: AuthService
   ) {}
 
   ngOnInit(): void {
+    this.esMonitorOCoordinador();
     this.getALlPosts();
+
   }
 
 
@@ -88,6 +93,16 @@ export class HabitosSaludablesComponent {
 
   changePostsPerPage(): void {
     this.currentPage = 1;
+}
+
+  esMonitorOCoordinador(): void {
+
+    this.authService.hasAnyRole(['monitor', 'coordinator']).subscribe({
+      next: (data) => {
+      this.authorized = data;
+    }
+  });
+
 }
 
 

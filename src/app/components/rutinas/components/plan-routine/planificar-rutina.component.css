@@ -1,80 +1,117 @@
-/* Estilos para el contenedor principal */
-.routine-planning {
-  font-family: Arial, sans-serif;
-  max-width: 600px;
-  margin: 0 auto;
-  padding: 20px;
-  background-color: #f9f9f9;
-  border-radius: 8px;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-}
+/* Estilos modernos para la aplicación de gimnasio */
 
-/* Estilos para los títulos */
-h2 {
+body {
+  font-family: Arial, sans-serif;
+  background-color: #f5f5f5;
   color: #333;
 }
 
-h3 {
-  color: #666;
+.routine-planning {
+  max-width: 60%;
+  margin: 0 auto;
+  padding: 20px;
+  background-color: #fff;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
 
-/* Estilos para los elementos de entrada */
-input[type="date"],
-input[type="number"] {
-  padding: 8px;
-  margin: 5px 0;
-  width: 100px;
-  border: 1px solid #ccc;
-  border-radius: 4px;
+h2 {
+  font-size: 24px;
+  color: #333;
+  margin-bottom: 20px;
 }
 
-/* Estilos para los botones */
-button {
-  padding: 10px 20px;
-  margin-top: 10px;
-  background-color: #007bff;
-  color: #fff;
-  border: none;
-  border-radius: 4px;
-  cursor: pointer;
-}
-
-/* Estilos para el botón de añadir serie */
-.add-set-button {
-  background-color: #28a745;
-}
-
-/* Estilos para el contenedor de ejercicios */
-.exercise-list {
-  margin-top: 20px;
-}
-
-/* Estilos para las etiquetas */
 label {
   font-weight: bold;
 }
 
-/* Estilos para los controles de serie */
-.series {
-  margin-bottom: 10px;
+input[type="date"],
+input[type="number"] {
+  width: 100%;
+  padding: 10px;
+  margin: 5px 0 15px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  box-sizing: border-box;
 }
 
+.series {
+  margin-bottom: 15px;
+}
+
+.series label {
+  display: inline-block;
+  width: 30px;
+}
+
+.series input {
+  width: calc(30% - 20px);
+  margin-right: 10px;
+}
+
+button {
+  padding: 12px 24px;
+  border: none;
+  border-radius: 5px;
+  background-color: #4CAF50;
+  color: white;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+button:hover {
+  background-color: #45a049;
+}
+
+button:disabled {
+  background-color: #ccc;
+  cursor: not-allowed;
+}
 
 .ventana-emergente {
   position: fixed;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  background-color: #ffffff;
-  border: 1px solid #000000;
+  background-color: rgba(0, 0, 0, 0.7);
   padding: 20px;
-  z-index: 9999;
+  border-radius: 10px;
+  color: white;
 }
 
 .contenido-ventana {
   text-align: center;
 }
 
-.ventana-emergente button {
-  margin-top: 10px;
+.contenido-ventana button {
+  margin-top: 20px;
+  padding: 10px 20px;
+  background-color: #4CAF50;
+  border: none;
+  border-radius: 5px;
+  color: white;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.contenido-ventana button:hover {
+  background-color: #45a049;
+}
+button {
+  margin-right: 10px; /* Espacio entre los botones */
+  margin-bottom: 10px; /* Espacio entre los botones y los elementos debajo */
+  padding: 10px 20px; /* Espacio interno de los botones */
+  font-size: 16px; /* Tamaño de fuente de los botones */
+}
+
+
+@media screen and (max-width: 600px) {
+  .routine-planning {
+    max-width: 100%; 
+  }
+}
+
+.pagination-controls {
+  margin-top: 20px; /* Agrega espacio entre la lista de ejercicios y los controles de paginación */
 }

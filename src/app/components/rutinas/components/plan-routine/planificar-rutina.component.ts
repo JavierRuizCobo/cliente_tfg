@@ -32,15 +32,15 @@ export class PlanRoutineComponent implements OnInit {
   date: string = new Date().toISOString().split('T')[0];
   routineToPlan?: Routine;
   exercises: ExercisePlan[] = [];
+  currentExerciseIndex: number = 0;
   showModal: boolean = false;
 
-
   constructor(
-    private router: Router, // Inject Router
+    private router: Router,
     private routineService: RoutinesService,
-    private plannedRoutineService : PlannedRoutinesService,
+    private plannedRoutineService: PlannedRoutinesService,
     private route: ActivatedRoute,
-  ){}
+  ) {}
 
   ngOnInit(): void {
     this.getRoutineDetail();
@@ -59,7 +59,6 @@ export class PlanRoutineComponent implements OnInit {
               name: exercise.name,
               series: []
             }));
-          
         },
         error: (e) => console.error(e)
       });
@@ -84,14 +83,14 @@ export class PlanRoutineComponent implements OnInit {
       };
 
       console.log(plannedRoutine);
-      
+
       this.plannedRoutineService.createPlannedRoutine(plannedRoutine).subscribe({
-        next: (res) =>{
+        next: (res) => {
           console.log(res);
           this.showModal = true;
           this.router.navigate(['/rutinas/detalle/', this.routineToPlan?._id]);
-        }, 
-        error:(e) => console.error(e)
+        },
+        error: (e) => console.error(e)
       })
     }
   }
@@ -100,7 +99,19 @@ export class PlanRoutineComponent implements OnInit {
     exercise.series.push({ reps: 0, kg: 0 });
   }
 
+  prevExercise() {
+    if (this.currentExerciseIndex > 0) {
+      this.currentExerciseIndex--;
+    }
+  }
+
+  nextExercise() {
+    if (this.currentExerciseIndex < this.exercises.length - 1) {
+      this.currentExerciseIndex++;
+    }
+  }
+
   closeModal() {
     this.showModal = false;
-  }  
+  }
 }

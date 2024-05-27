@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { FormsModule, NgForm } from '@angular/forms';
 import { Exercise } from '../../../../core/models/ejercicio.model';
 import { EjercicioService } from '../../../ejercicios/services/ejercicio.service';
@@ -7,24 +7,28 @@ import { SelectExercisesComponent } from '../modal-select-exercises/select-exerc
 import { CommonModule } from '@angular/common';
 import { RoutinesService } from '../../services/routines.service';
 import { Routine } from '../../../../core/models/routine.model';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-modal-crear-rutina',
   standalone: true,
   imports: [FormsModule, CommonModule],
   templateUrl: './modal-create-routine.component.html',
-  styleUrl: './modal-create-routine.component.css'
+  styleUrls: ['./modal-create-routine.component.css']
 })
 export class ModalCreateRoutineComponent {
 
   ejercicios: Exercise[] = [];
+  @Input() userId?: string;
 
-  constructor(private modalService: NgbModal, private rutinasService: RoutinesService) {}
+  constructor(private modalService: NgbModal,
+              private rutinasService: RoutinesService,
+              private route: ActivatedRoute) {}
 
   openModal() {
     const modalRef = this.modalService.open(SelectExercisesComponent, {
       centered: true,
-      size:'xl'
+      size: 'xl'
     });
 
     modalRef.componentInstance.selectedExercisesEvent.subscribe((ejercicios: Exercise[]) => {
@@ -40,21 +44,23 @@ export class ModalCreateRoutineComponent {
       console.log('Descripcion de la rutina: ', form.value.descripcion)
       console.log('Ejercicios:', this.ejercicios);
 
-      const nuevaRutina : any = {
+      const nuevaRutina: any = {
         name: form.value.nombre,
         description: form.value.descripcion,
         exercises: this.ejercicios.map(exercise => exercise._id),
+        assigned_to: this.userId
       };
 
+      console.log(nuevaRutina);
+
       this.rutinasService.createRoutine(nuevaRutina).subscribe({
-        next: (data) =>{
+        next: (data) => {
           console.log(data);
         },
-        error : (e) => console.error(e)
+        error: (e) => console.error(e)
       });
     } else {
       console.log('Rutina inválida');
     }
   }
-
 }

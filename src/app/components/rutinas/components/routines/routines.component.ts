@@ -32,7 +32,6 @@ export class RoutinesComponent implements OnInit {
 
   getRoutines(): void {
 
-    console.log(this.userId)
     if (this.userId) {
       this.routineService.getRoutinesByUserId(this.userId)
         .subscribe({
@@ -70,6 +69,8 @@ export class RoutinesComponent implements OnInit {
       centered: true,
       size: 'xl'
     });
+
+    modalRef.componentInstance.userId = this.userId;
 
     modalRef.result.then(() => {
       this.getRoutines();

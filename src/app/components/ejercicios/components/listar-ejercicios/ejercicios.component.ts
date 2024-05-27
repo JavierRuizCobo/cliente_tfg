@@ -6,6 +6,7 @@ import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { ModalCrearEjercicioComponent } from '../modal-crear-ejercicio/modal-crear-ejercicio.component';
 import { Router } from '@angular/router';
 import { AuthService } from '../../../../core/service/auth.service';
+import { dA } from '@fullcalendar/core/internal-common';
 
 
 @Component({
@@ -33,7 +34,7 @@ export class EjerciciosComponent {
 
   ngOnInit(): void {
     this.getAllExercises();
-    this.isCoordinatorOMOnitor = this.esMonitorOCoordinador();
+    this.esMonitorOCoordinador();
   }
 
   getAllExercises(): void{
@@ -60,15 +61,13 @@ export class EjerciciosComponent {
     this.router.navigate(['/ejercicios/detalle', ejercicio._id]);
   }
 
-  esMonitorOCoordinador(): boolean {
+  esMonitorOCoordinador(): void {
 
     this.authService.hasAnyRole(['monitor', 'coordinator']).subscribe({
-      next: () => {
-        return true;
-      }
+      next: (data) => {
+        this.isCoordinatorOMOnitor = data;
+      }, error: (e) => console.error(e)
     });
-
-    return false; 
   }
 
   eliminarEjercicio(ejercicio: Exercise) {

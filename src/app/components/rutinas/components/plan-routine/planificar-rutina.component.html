@@ -8,17 +8,24 @@
     <label for="date">Seleccionar Día:</label>
     <input type="date" id="date" [(ngModel)]="date" />
   </div>
-  <button class="save-button" (click)="saveRoutine()">Guardar Rutina Planificada</button>
 
-  <div class="exercise-list" *ngFor="let exercise of exercises">
-    <h3>{{ exercise.name }}</h3>
-    <div class="series" *ngFor="let set of exercise.series; let i = index">
-      <label>{{ i + 1 }}:</label>
-      <input type="number" [(ngModel)]="set.reps" />
-      <span>x</span>
-      <input type="number" [(ngModel)]="set.kg" /> Kg
-    </div>
-    <button class="add-set-button" (click)="addSeries(exercise)">Añadir Serie</button>
+  <div class="exercise-list">
+    <ng-container *ngIf="currentExerciseIndex < exercises.length">
+      <h3>{{ exercises[currentExerciseIndex].name }}</h3>
+      <div class="series" *ngFor="let set of exercises[currentExerciseIndex].series; let i = index">
+        <label>{{ i + 1 }}:</label>
+        <input type="number" [(ngModel)]="set.reps" />
+        <span>x</span>
+        <input type="number" [(ngModel)]="set.kg" /> Kg
+      </div>
+      <button class="add-set-button" (click)="addSeries(exercises[currentExerciseIndex])">Añadir Serie</button>
+    </ng-container>
+  </div>
+
+  <div class="pagination-controls">
+    <button (click)="prevExercise()" [disabled]="currentExerciseIndex === 0">Anterior</button>
+    <button *ngIf="currentExerciseIndex < exercises.length - 1" (click)="nextExercise()">Siguiente</button>
+    <button *ngIf="currentExerciseIndex === exercises.length - 1" (click)="saveRoutine()">Guardar Rutina Planificada</button>
   </div>
 </div>
 

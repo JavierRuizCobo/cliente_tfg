@@ -6,6 +6,7 @@ import { FormsModule } from '@angular/forms';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { ModalUsuarioComponent } from '../modal-usuario/modal-usuario.component';
 import { Router } from '@angular/router';
+import { AuthService } from '../../../../core/service/auth.service';
 
 
 @Component({
@@ -19,16 +20,22 @@ export class ListaUsuariosComponent implements OnInit {
 
   usuarios: Usuario[] = [];
   usuarioSeleccionado!: Usuario;
+  authorized : boolean = false;
+  authorizedToViewRoutines : boolean = false;
+
 
   filtro: string = '';
 
   constructor(private usuarioService: UsuarioService,
     private modalService : NgbModal,
-    private router: Router
+    private router: Router,
+    private authService : AuthService
   ) { }
 
   ngOnInit(): void {
     this.getUsers();
+    this.esCoordinador();
+    this.isMonitor();
   }
 
   getUsers(){
@@ -70,5 +77,25 @@ export class ListaUsuariosComponent implements OnInit {
 
     this.router.navigate([`/usuarios/${usuario._id}/rutinas`]);
   }
-}
 
+  esCoordinador(): void {
+
+    this.authService.hasAnyRole(['coordinator']).subscribe({
+      next: (data) => {
+        console.log(data)
+        this.authorized = data;
+      }
+    });
+  }
+  isMonitor(): void {
+
+    this.authService.hasAnyRole(['monitor']).subscribe({
+      next: (data) => {
+        console.log(data)
+        this.authorizedToViewRoutines = data;
+      }
+    });
+  }
+
+
+}

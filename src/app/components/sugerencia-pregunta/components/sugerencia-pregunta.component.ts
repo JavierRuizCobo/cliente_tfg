@@ -1,6 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
-import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { QuestionsService } from '../questions.service';
 
 @Component({
@@ -8,34 +8,35 @@ import { QuestionsService } from '../questions.service';
   standalone: true,
   imports: [CommonModule, ReactiveFormsModule],
   templateUrl: './sugerencia-pregunta.component.html',
-  styleUrl: './sugerencia-pregunta.component.css'
+  styleUrls: ['./sugerencia-pregunta.component.css']
 })
 
 export class SugerenciaPreguntaComponent {
   mailForm: FormGroup;
+  showPopup: boolean = false;
 
-  constructor(private formBuilder : FormBuilder, private questionsService : QuestionsService) {
+  constructor(private formBuilder: FormBuilder, private questionsService: QuestionsService) {
     this.mailForm = this.formBuilder.group({
       subject: ['', Validators.required],
       message: ['', Validators.required]
     });
   }
 
-  ngOnInit(): void {
-  }
+  ngOnInit(): void { }
 
   onSubmit(): void {
     if (this.mailForm.valid) {
-
       this.questionsService.sendMail(this.mailForm.value).subscribe({
         next: (res) => {
-          console.log(res)
-
+          console.log(res);
+          this.showPopup = true;
         },
         error: (e) => console.error(e)
-      })
+      });
     }
   }
 
-  
+  closePopup(): void {
+    this.showPopup = false;
+  }
 }

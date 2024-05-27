@@ -16,7 +16,7 @@ export class RoutinesService {
   }
 
   getRoutinesByUserId(userId: string): Observable<Routine[]> {
-    return this.http.get<Routine[]>(`${this.apiUrl}?userId=${userId}`);
+    return this.http.get<Routine[]>(`${this.apiUrl}?selectUserId=${userId}`);
   }
 
   getRoutine(id: string | null): Observable<Routine> {

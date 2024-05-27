@@ -1,3 +1,4 @@
+<div class="container">
 <form [formGroup]="mailForm" (ngSubmit)="onSubmit()">
   <div>
     <label for="subject">Asunto:</label>
@@ -17,3 +18,10 @@
 
   <button type="submit" [disabled]="mailForm.invalid">Enviar</button>
 </form>
+
+<div class="popup" *ngIf="showPopup">
+  <p>¡El mensaje se ha enviado correctamente!</p>
+  <button (click)="closePopup()">Cerrar</button>
+</div>
+
+</div>
