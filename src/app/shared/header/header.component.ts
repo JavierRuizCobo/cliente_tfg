@@ -34,6 +34,13 @@ export class HeaderComponent {
     });
   }
 
+  closeMenu(): void {
+    const menuToggle = document.getElementById('menu-toggle') as HTMLInputElement;
+    if (menuToggle) {
+      menuToggle.checked = false;
+    }
+  }
+
 
   logout(): void {
 

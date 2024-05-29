@@ -17,9 +17,9 @@ import { EjercicioService } from '../../services/ejercicio.service';
 })
 export class ModalCrearEjercicioComponent {
 
-
   newExercise: Exercise = {
     name: '',
+    video: '',
     difficulty: '',
     muscles: '',
     description: ''
@@ -32,10 +32,8 @@ export class ModalCrearEjercicioComponent {
   }
 
   agregarEjercicio(form: { valid: any; }): void {
-
-
     if (form.valid) {
-      console.log(this.newExercise)
+      console.log(this.newExercise);
       this.exerciseService.agregarEjercicio(this.newExercise).subscribe({
         next: (res) => {
           console.log(res);
@@ -46,5 +44,4 @@ export class ModalCrearEjercicioComponent {
       this.activeModal.close('Ejercicio creado');
     }
   }
-
 }

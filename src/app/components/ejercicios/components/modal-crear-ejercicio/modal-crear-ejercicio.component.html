@@ -8,12 +8,8 @@
           <input type="text" class="form-control" id="nombre" name="nombre" [(ngModel)]="newExercise.name" required>
         </div>
         <div class="form-group">
-          <label>Añadir Fotos</label>
-          <input type="file" class="form-control-file">
-        </div>
-        <div class="form-group">
-          <label>Añadir Videos</label>
-          <input type="file" class="form-control-file">
+          <label>Enlace de Video de YouTube</label>
+          <input type="url" class="form-control" id="video" name="video" [(ngModel)]="newExercise.video" required>
         </div>
       </div>
       <div class="col-md-6">

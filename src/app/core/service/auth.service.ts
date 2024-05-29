@@ -15,8 +15,14 @@ export class AuthService {
 
   isAuthenticated(): Observable<boolean> {
     return this.http.get<{ authenticated: boolean }>(`${this.apiUrl}/esta-autenticado`).pipe(
+      tap(response => {
+        console.log('Respuesta de autenticación:', response); // Registro de la respuesta en la consola
+      }),
       map(response => response.authenticated),
-      catchError(() => of(false))
+      catchError((error) => {
+        console.error('Error en la autenticación:', error); // Registro del error en la consola
+        return of(false);
+      })
     );
   }
 

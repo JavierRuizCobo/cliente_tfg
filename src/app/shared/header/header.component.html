@@ -7,14 +7,13 @@
       <input type="checkbox" id="menu-toggle">
       <label for="menu-toggle" class="menu-icon">&#9776;</label>
       <ul class="menu">
-        <li><a routerLink="/ejercicios">Ejercicios</a></li>
-      <li *ngIf="isUser"><a routerLink="/rutinas">Rutinas</a></li>
-      <li *ngIf="isUser"><a routerLink="/calendario">Calendario</a></li>
-      <li><a routerLink="/habitossaludables">Hábitos saludables</a></li>
-      <li *ngIf="isUser"><a routerLink="/sugerencia">Sugerencias</a></li>
-      <li *ngIf="isMonitorOrCoordinator"><a routerLink="/usuarios">Usuarios</a></li>
-      <li><button class="logout-button" (click)="logout()">Cerrar Sesión</button></li>
-    </ul>
+        <li><a routerLink="/ejercicios"  (click)="closeMenu()">Ejercicios</a></li>
+        <li *ngIf="isUser"><a routerLink="/rutinas" (click)="closeMenu()">Rutinas</a></li>      <li *ngIf="isUser"><a routerLink="/calendario">Calendario</a></li>
+        <li><a routerLink="/habitossaludables"  (click)="closeMenu()">Hábitos saludables</a></li>
+        <li *ngIf="isUser"><a routerLink="/sugerencia"  (click)="closeMenu()">Sugerencias</a></li>
+        <li *ngIf="isMonitorOrCoordinator"><a routerLink="/usuarios"  (click)="closeMenu()">Usuarios</a></li>
+        <li><button class="logout-button" (click)="logout()"  (click)="closeMenu()">Cerrar Sesión</button></li>
+      </ul>
     </nav>
   </header>
   <router-outlet></router-outlet>
