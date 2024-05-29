@@ -1,45 +1,35 @@
-
 @if (routine) {
-
-
-
     <div class="workout-tabs">
-        <h2>{{ routine.name }}</h2>
-        <div class="tabs">
-          <div class="tab" [class.active]="selectedTab === 'details'" (click)="selectTab('details')">Detalles</div>
-          <div class="tab" [class.active]="selectedTab === 'planned'" (click)="selectTab('planned')">Planificadas</div>
-          <div class="tab" [class.active]="selectedTab === 'completed'" (click)="selectTab('completed')">Realizadas</div>
-        </div>
-        <div class="tab-content">
-            @if (selectedTab === 'details') {
-
-                <ng-container>
-
-                    <h3>Ejercicios:</h3>
-                    <ul>
-                        @for (exercise of routine.exercises; track $index) {
-                            <li >
-                                {{ exercise.name }} - {{ exercise.description }}
-                            </li>
-                        }
-                    </ul>
-
-                </ng-container>
-
-            }
-            @else if (selectedTab === 'planned') {
-                <app-planned-routines></app-planned-routines>
-            } @else if (selectedTab === 'completed') {
-                <app-completed-routines></app-completed-routines>  
-            }
-            
-        </div>
+      <h2>{{ routine.name }}</h2>
+      <div class="tabs">
+        <div class="tab" [class.active]="selectedTab === 'details'" (click)="selectTab('details')">Detalles</div>
+        <div class="tab" [class.active]="selectedTab === 'planned'" (click)="selectTab('planned')">Planificadas</div>
+        <div class="tab" [class.active]="selectedTab === 'completed'" (click)="selectTab('completed')">Realizadas</div>
       </div>
+      <div class="tab-content">
+        @if (selectedTab === 'details') {
+          <ng-container>
+            <p> Descripción:  {{ routine.description }}</p>
+            <h3>Ejercicios:</h3>
+            <div class="exercises-list">
+              @for (exercise of routine.exercises; track $index) {
+                <a [routerLink]="['/ejercicios/detalle', exercise._id]" class="exercise-card">
+                  <div class="card-content">
+                    <h4>{{ exercise.name }}</h4>
+                  </div>
+                </a>
+              }
+            </div>
+          </ng-container>
+        }
+        @else if (selectedTab === 'planned') {
+          <app-planned-routines></app-planned-routines>
+        } @else if (selectedTab === 'completed') {
+          <app-completed-routines></app-completed-routines>
+        }
+      </div>
+    </div>
     <div>
-      </div>
-
-}
-
-
-
+    </div>
+  }
   

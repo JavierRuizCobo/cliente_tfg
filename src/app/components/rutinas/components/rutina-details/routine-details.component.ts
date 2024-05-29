@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, RouterLink } from '@angular/router';
 import { RoutinesService } from '../../services/routines.service';
 import { Routine } from '../../../../core/models/routine.model';
 import { PlannedRoutinesComponent } from '../planned-routines/planned-routines.component';
@@ -8,7 +8,7 @@ import { CompletedRoutinesComponent } from '../completed-routines/completed-rout
 @Component({
   selector: 'app-routine-details',
   standalone: true,
-  imports: [PlannedRoutinesComponent, CompletedRoutinesComponent],
+  imports: [PlannedRoutinesComponent, CompletedRoutinesComponent, RouterLink],
   templateUrl: './routine-details.component.html',
   styleUrls: ['./routine-details.component.css']
 })
@@ -28,7 +28,6 @@ export class RoutineDetailsComponent implements OnInit {
 
   getRoutineDetail(): void {
     const id = this.route.snapshot.paramMap.get('routineId');
-    console.log(id)
     if (id !== null) {
       this.routineService.getRoutine(id).subscribe({
         next: (data: Routine | undefined) => {

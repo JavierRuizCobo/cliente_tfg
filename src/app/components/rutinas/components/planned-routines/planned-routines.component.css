@@ -1,0 +1,75 @@
+.plan-button {
+    display: block;
+    margin: 20px auto;
+    padding: 10px 20px;
+    font-size: 16px;
+    font-weight: bold;
+    color: white;
+    background-color: #007bff; /* Azul */
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+  }
+  
+  .plan-button:hover {
+    background-color: #0056b3; /* Azul más oscuro */
+  }
+  
+  .routine-list {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    margin-top: 20px;
+  }
+  
+  .routine-card {
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    background-color: #f9f9f9;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: box-shadow 0.3s;
+  }
+  
+  .routine-card:hover {
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+  }
+  
+  .routine-info h2 {
+    margin: 0 0 10px;
+    color: #003366; /* Azul */
+  }
+  
+  .routine-actions {
+    display: flex;
+    justify-content: space-around;
+  }
+  
+  .action-button {
+    padding: 10px 15px;
+    font-size: 14px;
+    font-weight: bold;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+  }
+  
+  .action-button.delete {
+    background-color: #dc3545; /* Rojo */
+  }
+  
+  .action-button.delete:hover {
+    background-color: #c82333; /* Rojo más oscuro */
+  }
+  
+  .action-button.complete {
+    background-color: #28a745; /* Verde */
+  }
+  
+  .action-button.complete:hover {
+    background-color: #218838; /* Verde más oscuro */
+  }
+  
