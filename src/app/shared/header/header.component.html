@@ -8,7 +8,8 @@
       <label for="menu-toggle" class="menu-icon">&#9776;</label>
       <ul class="menu">
         <li><a routerLink="/ejercicios"  (click)="closeMenu()">Ejercicios</a></li>
-        <li *ngIf="isUser"><a routerLink="/rutinas" (click)="closeMenu()">Rutinas</a></li>      <li *ngIf="isUser"><a routerLink="/calendario">Calendario</a></li>
+        <li *ngIf="isUser"><a routerLink="/rutinas" (click)="closeMenu()">Rutinas</a></li>      
+        <li *ngIf="isUser"><a routerLink="/calendario" (click)="closeMenu()">Calendario</a></li>
         <li><a routerLink="/habitossaludables"  (click)="closeMenu()">Hábitos saludables</a></li>
         <li *ngIf="isUser"><a routerLink="/sugerencia"  (click)="closeMenu()">Sugerencias</a></li>
         <li *ngIf="isMonitorOrCoordinator"><a routerLink="/usuarios"  (click)="closeMenu()">Usuarios</a></li>
@@ -16,10 +17,6 @@
       </ul>
     </nav>
   </header>
-  <router-outlet></router-outlet>
-
-} @else {
-  <app-login></app-login>
-
-}
+} 
+<router-outlet></router-outlet>
 

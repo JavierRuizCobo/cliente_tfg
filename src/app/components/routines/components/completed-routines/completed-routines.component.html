@@ -1,0 +1,17 @@
+<div>
+  <label for="monthFilter">Filtrar por mes:</label>
+  <input type="month" id="monthFilter" (change)="filterByMonth($event)">
+</div>
+
+
+<div class="card-container">
+  <div *ngFor="let routine of displayedRoutines" class="card">
+    <p>Fecha: {{ routine.date | date }}</p>
+    <button class="btn btn-primary" (click)="openModal(routine)" data-bs-toggle="modal" data-bs-target="#routineModal">Ver detalles</button>
+  </div>
+</div>
+
+<div *ngIf="totalPages > 1" class="pagination">
+  <button [disabled]="currentPage === 1" (click)="prevPage()">Anterior</button>
+  <button [disabled]="currentPage === totalPages" (click)="nextPage()">Siguiente</button>
+</div>

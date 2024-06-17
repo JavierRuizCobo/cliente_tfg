@@ -1,0 +1,10 @@
+export interface User {
+    _id ?: string;
+    name: string;
+    email: string;
+    role: string;
+    password: string;
+    lastName: string;
+    active?: boolean;
+  }
+  

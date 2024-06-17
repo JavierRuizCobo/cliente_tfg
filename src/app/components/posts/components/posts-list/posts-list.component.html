@@ -1,0 +1,32 @@
+<div class="container">
+    <h1>Posts sobre hábitos saludables</h1>
+  
+    @if (authorized) {
+      <button class="create-post-btn" (click)="openCreatePostModal()">Crear Post</button>
+    }
+    <ul>
+        @for (post of postsToShow; track post) {
+              <div class="post">
+                  <h2>{{ post.title }}</h2>
+                  <p>{{ post.content }}</p>
+              </div>
+              @if (authorized) {
+  
+              <button class="delete-post-btn" (click)="post._id && deletePost(post._id)">Eliminar</button>
+              }
+        }
+    </ul>
+  
+    <div class="pagination-container">
+        <div class="posts-per-page">
+            <label for="postsPerPage">Posts por página:</label>
+            <input type="number" id="postsPerPage" name="postsPerPage" [(ngModel)]="postsPerPage" min="1" max="5"  (change)="changePostsPerPage()">
+        </div>
+        <div class="pagination">
+            <button [disabled]="currentPage === 1" (click)="prevPage()">Anterior</button>
+            <span>Página {{currentPage}} de {{totalPages}}</span>
+            <button [disabled]="currentPage === totalPages" (click)="nextPage()">Siguiente</button>
+        </div>
+    </div>
+  </div>
+  

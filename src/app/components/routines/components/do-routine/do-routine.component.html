@@ -1,0 +1,30 @@
+<div class="routine-execution">
+    <h2>Realizar Rutina</h2>
+    <div class="routine-info">
+      <label for="routine">Rutina:</label>
+      <span id="routine">{{ routineToComplete!.name }}</span>
+    </div>
+    <div class="select-date">
+      <label for="date">Día:</label>
+      <span id="date">{{ routineToComplete!.date | date }}</span>
+    </div>
+  
+    <div class="exercise-list">
+      <ng-container *ngIf="currentExerciseIndex < routineToComplete.exercises.length">
+        <h3>{{ routineToComplete.exercises[currentExerciseIndex].exercise!.name }}</h3>
+        <div class="series" *ngFor="let set of routineToComplete.exercises[currentExerciseIndex].series; let i = index">
+          <label>{{ i + 1 }}:</label>
+          <input type="number" [(ngModel)]="set.reps" />
+          <span>x</span>
+          <input type="number" [(ngModel)]="set.weight" /> Kg
+        </div>
+      </ng-container>
+    </div>
+  
+    <div class="pagination-controls">
+      <button (click)="prevExercise()" [disabled]="currentExerciseIndex === 0">Anterior</button>
+      <button *ngIf="currentExerciseIndex < routineToComplete.exercises.length - 1" (click)="nextExercise()">Siguiente</button>
+      <button *ngIf="currentExerciseIndex === routineToComplete.exercises.length - 1" (click)="completeRoutine()">Completar Rutina</button>
+    </div>
+  </div>
+  

@@ -1,0 +1,39 @@
+<div class="modal fade" [class.show]="selectedRoutine" [style.display]="selectedRoutine ? 'block' : 'none'" (click)="closeModal()">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content" (click)="$event.stopPropagation()">
+        <div class="modal-header">
+          <h5 class="modal-title">Ejercicios de la rutina</h5>
+          <button type="button" class="btn-close" aria-label="Close" (click)="closeModal()"></button>
+        </div>
+        <div class="modal-body">
+          <div *ngIf="selectedRoutine">
+            <div *ngFor="let exercise of selectedRoutine.exercises | slice: (currentPage - 1) * itemsPerPage : currentPage * itemsPerPage">
+              <h3>{{ exercise.exercise?.name }}</h3>
+              <div *ngIf="exercise.series.length > 0">
+                <h4>Series</h4>
+                <ul>
+                  <li *ngFor="let serie of exercise.series">
+                    Repeticiones: {{ serie.reps }}, Peso: {{ serie.weight }}
+                  </li>
+                </ul>
+              </div>
+              <div *ngIf="exercise.series.length === 0">
+                <p>No se realizaron series.</p>
+              </div>
+            </div>
+            <nav>
+              <ul class="pagination">
+                <li class="page-item" [class.disabled]="currentPage === 1">
+                  <a class="page-link" (click)="currentPage > 1 && (currentPage = currentPage - 1)">Anterior</a>
+                </li>
+                <li class="page-item" [class.disabled]="currentPage === getTotalPages(selectedRoutine.exercises)">
+                  <a class="page-link" (click)="currentPage < getTotalPages(selectedRoutine.exercises) && (currentPage = currentPage + 1)">Siguiente</a>
+                </li>
+              </ul>
+            </nav>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  

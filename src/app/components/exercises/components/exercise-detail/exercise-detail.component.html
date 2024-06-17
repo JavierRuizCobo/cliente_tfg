@@ -1,0 +1,19 @@
+<div class="container mt-5">
+  <div class="row justify-content-center">
+    <div class="col-lg-8 col-md-10 text-center">
+      @if(exercise){
+        <h1 class="text-primary mb-4">{{ exercise.name }}</h1>
+
+        <div class="ratio ratio-16x9 video-container mb-4">
+          <iframe class="embed-responsive-item" [src]="exercise.video! | safeUrl" allowfullscreen></iframe>
+        </div>
+
+        <div class="exercise-details text-start">
+          <p class="fs-5"><strong>Grupo Muscular:</strong> {{ exercise.muscles }}</p>
+          <p class="fs-5"><strong>Dificultad:</strong> {{ exercise.difficulty }}</p>
+          <p class="description fs-5"><strong>Descripción:</strong> {{ exercise.description }}</p>
+        </div>
+      }
+    </div>
+  </div>
+</div>

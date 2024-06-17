@@ -1,0 +1,24 @@
+<div class="calendar-container">
+  <div class="calendar-header">
+    <button (click)="previousMonth()">&lt;</button>
+    <div>{{ getMonthName(currentMonth) }} {{ currentYear }}</div>
+    <button (click)="nextMonth()">&gt;</button>
+  </div>
+  <div class="calendar-grid">
+    <div class="calendar-grid-header">
+      <div *ngFor="let day of ['Lun', 'Mar', 'Mié', 'Jue', 'Vie', 'Sáb', 'Dom']">{{ day }}</div>
+    </div>
+    <div class="calendar-grid-body">
+      <div *ngFor="let day of days" class="calendar-day">
+        <div class="date">{{ day.date }}</div>
+        <div class="routines" *ngIf="day.date">
+          <button *ngFor="let routine of day.routines" class="routine-button"
+                  [ngClass]="{'completed': routine.completed, 'incomplete': !routine.completed}"
+                  (click)="routine.completed ? viewRoutine(routine) : completeRoutine(routine._id)">
+            {{ routine.completed ? 'Ver' : 'Realizar' }}
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

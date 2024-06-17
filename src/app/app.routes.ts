@@ -3,25 +3,26 @@ import { LoginComponent } from './core/components/login/login.component';
 import {AuthGuard} from './core/guards/authguard.guard';
 import { UnauthorizedComponent } from './shared/unauthorized/unauthorized.component';
 import { MultiRoleGuard } from './core/guards/role-guard.guard';
+import { ActivatedAccountComponent } from './core/components/activated-account/activated-account.component';
+import { AuthRedirectGuard } from './core/guards/authredirect.guard';
 
 
 export const routes: Routes = [
 
-
   { 
     path: 'ejercicios', 
-    loadChildren: () => import('./components/ejercicios/ejercicio.routes').then(m => m.EjercicioRoutes),
+    loadChildren: () => import('./components/exercises/exercise.routes').then(m => m.EjercicioRoutes),
     canActivate: [AuthGuard],
   },
   { 
     path: 'usuarios', 
-    loadChildren: () => import('./components/usuarios/user.routes').then(m => m.UserRoutes),
+    loadChildren: () => import('./components/users/user.routes').then(m => m.UserRoutes),
     canActivate: [AuthGuard, MultiRoleGuard],
     data: { roles: ['monitor', 'coordinator']}
   },
   { 
     path: 'habitossaludables', 
-    loadComponent: () => import('./components/habitos-saludables/components/listar-posts/habitos-saludables.component').then(m => m.HabitosSaludablesComponent),
+    loadComponent: () => import('./components/posts/components/posts-list/posts-list.component').then(m => m.PostListsComponent),
     canActivate: [AuthGuard],
   },
   { 
@@ -33,20 +34,27 @@ export const routes: Routes = [
   },
   { 
     path: 'calendario', 
-    loadComponent: () => import('./components/calendario/components/calendario.component').then(m => m.CalendarioComponent),
+    loadComponent: () => import('./components/calendar/components/calendar.component').then(m => m.CalendarioComponent),
     canActivate: [AuthGuard, MultiRoleGuard],
     data: { roles: ['user']}
     
   },
   { 
     path: 'rutinas', 
-    loadChildren: () => import('./components/rutinas/routines.routes').then(m => m.RutinasRoutes),
+    loadChildren: () => import('./components/routines/routines.routes').then(m => m.RutinasRoutes),
     canActivate: [AuthGuard, MultiRoleGuard],
-    data: { roles: ['monitor', 'user']}
+    data: { roles: ['user']}
   },
   {
     path: 'login',
+    canActivate: [AuthRedirectGuard],
     component: LoginComponent
+  },
+
+  { 
+    path: 'activar-cuenta', 
+    canActivate: [AuthRedirectGuard],
+    component: ActivatedAccountComponent 
   },
   {
     path: '',

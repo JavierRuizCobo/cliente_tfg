@@ -1,7 +1,6 @@
 import { Component } from '@angular/core';
 import { AuthService } from '../../service/auth.service';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
-import { Router } from '@angular/router';
 import { CommonModule } from '@angular/common';
 
 @Component({
@@ -20,7 +19,6 @@ export class LoginComponent {
   constructor(
     private fb: FormBuilder,
     private authService: AuthService,
-    private router: Router
   ) {
     this.loginForm = this.fb.group({
       email: ['', [Validators.required, Validators.email]],
@@ -37,7 +35,8 @@ export class LoginComponent {
           window.location.href = '/'
         },
         error: (err) => {
-          this.errorMessage = 'Invalid credentials';
+          console.error(err);
+          this.errorMessage = err.error.message;
         }
       });
     }

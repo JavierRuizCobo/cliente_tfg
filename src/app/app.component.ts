@@ -14,5 +14,5 @@ import { CommonModule } from '@angular/common';
     imports: [RouterModule, HeaderComponent, HttpClientModule, LoginComponent, CommonModule]
 })
 export class AppComponent {
-  title = 'cliente_tfg';
+  title = 'GYMUNEAT';
 }

@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { ActivatedRouteSnapshot, CanActivate, Router, RouterStateSnapshot } from '@angular/router';
+import { ActivatedRouteSnapshot, Router, RouterStateSnapshot } from '@angular/router';
 import { AuthService } from '../service/auth.service';
 import { Observable } from 'rxjs';
 import { map, take } from 'rxjs/operators';
@@ -7,7 +7,7 @@ import { map, take } from 'rxjs/operators';
 @Injectable({
   providedIn: 'root'
 })
-export class AuthGuard implements CanActivate {
+export class AuthGuard{
 
   constructor(private authService: AuthService, private router: Router) {}
 
@@ -20,7 +20,7 @@ export class AuthGuard implements CanActivate {
       map(isAuthenticated => {
         if (!isAuthenticated) {
           console.log("No sesión", isAuthenticated);
-          this.router.navigate(['/login']);
+          window.location.href = '/login';
           return false;
         }
         return true;

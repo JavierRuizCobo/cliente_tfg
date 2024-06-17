@@ -2,7 +2,8 @@ import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
 import { Router, RouterLink, RouterModule, RouterOutlet } from '@angular/router';
 import { AuthService } from '../../core/service/auth.service';
-import { LoginComponent } from "../../core/components/login/login.component";
+import { ConfirmModalService } from '../components/confirm-modal/confirm-modal.service';
+
 
 
 @Component({
@@ -10,7 +11,7 @@ import { LoginComponent } from "../../core/components/login/login.component";
     standalone: true,
     templateUrl: './header.component.html',
     styleUrl: './header.component.css',
-    imports: [RouterModule, CommonModule, LoginComponent]
+    imports: [RouterModule, CommonModule]
 })
 export class HeaderComponent {
 
@@ -18,12 +19,19 @@ export class HeaderComponent {
   isUser: boolean = false;
   isMonitorOrCoordinator: boolean = false;
 
-  constructor(private authService: AuthService, private router : Router) {}
+  constructor(private authService: AuthService, private router : Router,
+    private confirmModalService: ConfirmModalService
+
+  ) {}
 
   ngOnInit(): void {
     this.authService.isAuthenticated().subscribe(isAuthenticated => {
+      console.log("Headerrrr");
+      console.log(isAuthenticated);
       this.isAuthenticated = isAuthenticated;
       if (isAuthenticated) {
+        console.log("Headerrrr")
+        
         this.authService.hasAnyRole(['user']).subscribe(isUser => {
           this.isUser = isUser;
         });
@@ -44,20 +52,21 @@ export class HeaderComponent {
 
   logout(): void {
 
-    const confirmed = window.confirm('¿Estás seguro de que deseas cerrar sesión?');
-    if (confirmed) {
-      this.authService.logout().subscribe({
-        next: (res) =>{
-          console.log(res);
-  
-          this.authService.isAuthenticated().subscribe(isAuthenticated => {
-            this.isAuthenticated = isAuthenticated;
+    this.confirmModalService.confirm('Cerrar Sesión', '¿Quieres cerrar sesión?')
+      .then((confirmed: any) => {
+        if (confirmed) {
+          this.authService.logout().subscribe({
+            next: (res) =>{
+              console.log(res);
+      
+              this.authService.isAuthenticated().subscribe(isAuthenticated => {
+                this.isAuthenticated = isAuthenticated;
+              });
+      
+              this.router.navigate(['/login']);        
+            }
           });
-  
-          this.router.navigate(['/login']);        
         }
-      });
-    }
-    
+      });    
   }
 }

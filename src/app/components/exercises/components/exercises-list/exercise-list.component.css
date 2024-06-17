@@ -1,0 +1,145 @@
+.container {
+    max-width: 100%;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+h2 {
+    color: #007bff;
+    text-align: center;
+}
+
+.create-btn-container {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.create-btn {
+    background-color: #28a745;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    padding: 8px 16px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    font-size: 14px;
+}
+
+.create-btn:hover {
+    background-color: #218838;
+}
+
+.filter-section {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.filter-section input {
+    padding: 10px;
+    margin-right: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    width: calc(100% - 20px);
+    max-width: 400px;
+    box-sizing: border-box;
+}
+
+.filter-btns {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 10px;
+    margin-top: 10px;
+}
+
+.filter-btn {
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    padding: 10px 20px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    font-size: 16px;
+}
+
+.filter-btn:hover {
+    background-color: #0056b3;
+}
+
+.exercise-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    grid-gap: 20px;
+    justify-content: center;
+    align-items: center;
+}
+
+.exercise {
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    text-align: center;
+    transition: transform 0.3s ease;
+    border: 2px solid #007bff;
+    cursor: pointer;
+}
+
+.exercise:hover {
+    transform: translateY(-5px);
+    border-color: #0056b3;
+}
+
+.exercise strong {
+    color: #333;
+}
+
+.delete-btn {
+    background-color: #dc3545;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    padding: 5px 10px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.delete-btn:hover {
+    background-color: #c82333;
+}
+
+.edit-btn {
+    background-color: #ffc107;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    padding: 5px 10px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    font-size: 14px;
+    margin-right: 5px;
+}
+
+.edit-btn:hover {
+    background-color: #e0a800;
+}
+
+@media (max-width: 768px) {
+    .exercise-list {
+        grid-template-columns: 1fr;
+    }
+
+    .filter-section input {
+        margin: 0 auto;
+        margin-bottom: 10px;
+    }
+
+    .filter-btns {
+        flex-direction: column;
+    }
+
+    .filter-btn {
+        margin: 5px 0;
+    }
+}

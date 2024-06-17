@@ -1,0 +1,24 @@
+<div class="container">
+  <div class="btn-group">
+    <button class="btn-crear" (click)="createRoutine()">Crear Rutina</button>
+    @if (!userId) {
+      <button class="btn-solicitar" (click)="requestRoutine()">Solicitar Rutina</button>
+
+    }
+  </div>
+  <div class="rutinas">
+      @for (routine of routines; track $index) {
+          <div class="rutina-card" >
+            <div class="rutina-info" (click)="viewRoutine(routine)">
+              <h2>{{ routine.name }}</h2>
+            </div>
+            <div class="rutina-actions">
+              @if (routine._id) {
+                <button class="btn-planificar" (click)="planRoutine(routine._id)">Planificar</button>
+                <button class="btn-eliminar" (click)="deleteRoutine(routine._id)">Eliminar</button>
+              }
+            </div>
+          </div>
+      }
+  </div>
+</div>

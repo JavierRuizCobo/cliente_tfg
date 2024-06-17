@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { BehaviorSubject, Observable, catchError, map, of, tap } from 'rxjs';
+import { Observable, catchError, map, of, tap } from 'rxjs';
 
 
 @Injectable({
@@ -16,11 +16,11 @@ export class AuthService {
   isAuthenticated(): Observable<boolean> {
     return this.http.get<{ authenticated: boolean }>(`${this.apiUrl}/esta-autenticado`).pipe(
       tap(response => {
-        console.log('Respuesta de autenticación:', response); // Registro de la respuesta en la consola
+        console.log('Respuesta de autenticación:', response);
       }),
       map(response => response.authenticated),
       catchError((error) => {
-        console.error('Error en la autenticación:', error); // Registro del error en la consola
+        console.error('Error en la autenticación:', error);
         return of(false);
       })
     );
@@ -49,9 +49,20 @@ export class AuthService {
       }));
   }
 
+  activateAccount(token: string, email: string, password: string): Observable<any> {
+    return this.http.post<any>(`${this.apiUrl}/activar-cuenta`, { token, email, password });
+  }
+
+  deactivateAccount(userId: string): Observable<any> {
+    return this.http.post<any>(`${this.apiUrl}/desactivar-cuenta`, { userId });
+  }
+
+  sendActivationEmail(userId: string): Observable<any> {
+    return this.http.post<any>(`${this.apiUrl}/enviar-correo-activacion`, { userId });
+  }
+
+
   logout(): Observable<void> {
-    // Aquí llama al endpoint correspondiente en tu servidor para cerrar sesión
-    // Por ejemplo, si tu servidor tiene un endpoint /logout que elimina el token de sesión:
     return this.http.post<void>(`${this.apiUrl}/cerrar-sesion`, null);
   }
 
