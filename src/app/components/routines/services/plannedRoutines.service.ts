@@ -13,12 +13,10 @@ export class PlannedRoutinesService {
 
   constructor(private http: HttpClient) { }
 
-  // Método para crear una rutina planificada
   createPlannedRoutine(plannedRoutine: PlannedRoutine): Observable<PlannedRoutine> {
     return this.http.post<PlannedRoutine>(this.apiUrl, plannedRoutine);
   }
 
-  // Método para actualizar una rutina planificada
   updatePlannedRoutine(id: string, plannedRoutine: PlannedRoutine): Observable<PlannedRoutine> {
     return this.http.put<PlannedRoutine>(`${this.apiUrl}/${id}`, plannedRoutine);
   }
@@ -27,17 +25,14 @@ export class PlannedRoutinesService {
     return this.http.get<PlannedRoutine>(`${this.apiUrl}/${id}`);
   }
 
-  // Método para obtener todas las rutinas planificadas
   getAllPlannedRoutines(): Observable<PlannedRoutine[]> {
     return this.http.get<PlannedRoutine[]>(this.apiUrl);
   }
 
-  // Método para eliminar una rutina planificada
   deletePlannedRoutine(id: string): Observable<void> {
     return this.http.delete<void>(`${this.apiUrl}/${id}`);
   }
 
-  // Método para obtener todas las rutinas planificadas por rutinaId
   getPlannedRoutinesByRoutineId(routineId: string): Observable<PlannedRoutine[]> {
     return this.http.get<PlannedRoutine[]>(`${this.apiUrl}/routine/${routineId}`);
   }
