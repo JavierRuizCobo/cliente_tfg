@@ -28,7 +28,7 @@ export class ModalUsuarioComponent implements OnInit {
       name: ['', Validators.required],
       lastName: ['', Validators.required],
       email: ['', [Validators.required, Validators.email]],
-      password: ['', [Validators.minLength(8)]],  // No obligatorio al editar
+      password: ['', [Validators.minLength(8)]],
       role: ['', Validators.required]
     });
   }
@@ -37,7 +37,7 @@ export class ModalUsuarioComponent implements OnInit {
     if (this.User) {
       this.usuarioForm.patchValue(this.User);
     } else {
-      this.usuarioForm.get('password')?.setValidators([Validators.required, Validators.minLength(8)]);  // Requerir contraseña al crear
+      this.usuarioForm.get('password')?.setValidators([Validators.required, Validators.minLength(8)]);
     }
     this.usuarioForm.get('password')?.updateValueAndValidity();
   }
@@ -61,7 +61,7 @@ export class ModalUsuarioComponent implements OnInit {
       }
       this.activeModal.close('User creado');
     } else {
-      this.usuarioForm.markAllAsTouched();  // Marca todos los campos como "touched" para mostrar mensajes de error.
+      this.usuarioForm.markAllAsTouched(); 
     }
   }
 }

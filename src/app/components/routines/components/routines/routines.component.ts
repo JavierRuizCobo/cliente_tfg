@@ -64,7 +64,8 @@ export class RoutinesComponent implements OnInit {
   }
 
   deleteRoutine(id: string): void {
-    this.confirmModalService.confirm('Confirm Deletion', 'Are you sure you want to delete this routine?')
+    this.confirmModalService.confirm('Confirmar eliminación',
+       '¿Estás seguro que quieres eliminar esta rutina? Eliminarla tenrá la consecuencia de que se eliminen todas las rutinas planificadas y realizadas respecto a esta rutina.')
       .then((confirmed: any) => {
         if (confirmed) {
           this.routineService.deleteRoutine(id).subscribe({
@@ -105,7 +106,6 @@ export class RoutinesComponent implements OnInit {
       this.router.navigate([`/usuarios/${this.userId}/rutinas/detalle/${routine._id}`]);
     } else{
       this.router.navigate(['/rutinas/detalle', routine._id]);
-
     }
   }
 

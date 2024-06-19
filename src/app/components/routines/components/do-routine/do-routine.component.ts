@@ -4,6 +4,7 @@ import { PlannedRoutinesService } from '../../services/plannedRoutines.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
+import { InformModalService } from '../../../../shared/components/inform-modal/inform-modal.service';
 
 @Component({
   selector: 'app-do-routine',
@@ -21,7 +22,9 @@ export class DoRoutineComponent implements OnInit {
   constructor(
     private plannedRoutinesService: PlannedRoutinesService,
     private route: ActivatedRoute,
-    private router: Router
+    private router: Router,
+    private informModalService: InformModalService
+
   ) {}
 
   ngOnInit(): void {
@@ -34,7 +37,6 @@ export class DoRoutineComponent implements OnInit {
       this.plannedRoutinesService.getPlannedRoutineById(id).subscribe({
         next: (data: PlannedRoutine) => {
           this.routineToComplete = data;
-          console.log(this.routineToComplete);
         },
         error: (e) => console.error(e)
       });
@@ -46,13 +48,13 @@ export class DoRoutineComponent implements OnInit {
 
     if (this.routineToComplete?._id) {
 
-      console.log(this.routineToComplete)
       this.plannedRoutinesService.updatePlannedRoutine(this.routineToComplete._id, this.routineToComplete).subscribe({
         next: (res) => {
-          console.log(res);
-          this.showModal = true;
+          this.informModalService.inform('Éxito', 'Rutina realizada guardada exitosamente.');
+          this.router.navigate(['/rutinas/detalle/', this.routineToComplete?.routineId]);
         },
-        error: (e) => console.error(e)
+        error: (e) => this.informModalService.inform('Error', 'Error al guardar la rutina planificada')
+
       });
     }
   }

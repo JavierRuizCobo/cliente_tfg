@@ -4,9 +4,13 @@
       @if(exercise){
         <h1 class="text-primary mb-4">{{ exercise.name }}</h1>
 
-        <div class="ratio ratio-16x9 video-container mb-4">
-          <iframe class="embed-responsive-item" [src]="exercise.video! | safeUrl" allowfullscreen></iframe>
-        </div>
+        @if (exercise.video) {
+          <div class="ratio ratio-16x9 video-container mb-4">
+            <iframe class="embed-responsive-item" [src]="exercise.video | safeUrl" allowfullscreen></iframe>
+          </div>
+        }
+
+        
 
         <div class="exercise-details text-start">
           <p class="fs-5"><strong>Grupo Muscular:</strong> {{ exercise.muscles }}</p>

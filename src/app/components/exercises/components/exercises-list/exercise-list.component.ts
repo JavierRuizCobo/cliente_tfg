@@ -6,6 +6,7 @@ import { Router } from '@angular/router';
 import { AuthService } from '../../../../core/service/auth.service';
 import { ExerciseService } from '../../services/exercise.service';
 import { FormsModule } from '@angular/forms';
+import { ConfirmModalService } from '../../../../shared/components/confirm-modal/confirm-modal.service';
 
 @Component({
   selector: 'app-exercise-list',
@@ -25,7 +26,9 @@ export class ExerciseListComponent implements OnInit {
     private exerciseService: ExerciseService,
     private modalService: NgbModal,
     private router: Router,
-    private authService: AuthService
+    private authService: AuthService,
+    private confirmModalService: ConfirmModalService
+
   ) {}
 
   ngOnInit(): void {
@@ -71,15 +74,18 @@ export class ExerciseListComponent implements OnInit {
   }
 
   deleteExercise(exercise: Exercise): void {
-    if (exercise._id) {
-      this.exerciseService.deleteExercise(exercise._id).subscribe({
-        next: (res) => {
-          console.log(res);
-          this.getAllExercises();
-        },
-        error: (e) => console.error(e)
+    this.confirmModalService.confirm('Confirmar eliminación',
+      '¿Estás seguro que quieres eliminar este ejercicio?')
+      .then((confirmed: any) => {
+        if (confirmed && exercise._id) {
+        this.exerciseService.deleteExercise(exercise._id).subscribe({
+          next: (res) => {
+            this.getAllExercises();
+          },
+          error: (e) => console.error(e)
+        });
+        }
       });
-    }
   }
 
   editExercise(exercise: Exercise): void {

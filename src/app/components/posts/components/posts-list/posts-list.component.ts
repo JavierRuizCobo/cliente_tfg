@@ -43,7 +43,7 @@ export class PostListsComponent {
   }
 
   deletePost(id: string) {
-    this.confirmModalService.confirm('Confirm Deletion', 'Are you sure you want to delete this post?')
+    this.confirmModalService.confirm('Confirmar eliminacón', '¿Estás seguro de que quieres eliminar este post?')
       .then((confirmed: any) => {
         if (confirmed) {
           this.postService.deletePost(id).subscribe({

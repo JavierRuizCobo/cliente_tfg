@@ -5,6 +5,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { CompletedRoutineDetailComponent } from '../completed-routine-detail/completed-routine-detail.component';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { ConfirmModalService } from '../../../../shared/components/confirm-modal/confirm-modal.service';
 
 @Component({
   selector: 'app-planned-routines',
@@ -24,7 +25,8 @@ export class PlannedRoutinesComponent {
     private plannedRoutinesService : PlannedRoutinesService,
     private route : ActivatedRoute,
     private router: Router,
-    private modalService : NgbModal
+    private modalService : NgbModal,
+    private confirmModalService : ConfirmModalService
   ){}
 
   ngOnInit(): void {
@@ -38,12 +40,9 @@ export class PlannedRoutinesComponent {
     this.routineId = this.route.snapshot.paramMap.get('routineId');
 
     if (this.routineId) {
-      console.log(this.routineId);
       this.plannedRoutinesService.getPlannedRoutinesByRoutineId(this.routineId).subscribe({
         next: (data: PlannedRoutine[]) => {
-          console.log(data);
           this.plannedRoutines = data.filter(routine => routine.completed===false);
-          console.log(this.plannedRoutines);
         },
         error: (e) => console.error(e)
       });
@@ -52,15 +51,19 @@ export class PlannedRoutinesComponent {
   }
 
   deletePlannedRoutine(routine : any){
-    if(window.confirm('Are sure you want to delete this item ?')){
-
-      this.plannedRoutinesService.deletePlannedRoutine(routine._id).subscribe({
-        next: (res) => {
-          console.log(res);
-          this.getPlannedRoutines();
-        },error: (e) => console.error(e)
-      });
-     }
+  
+     this.confirmModalService.confirm('Confirmar eliminación',
+      '¿Estás seguro que quieres eliminar esta rutina planificada?')
+     .then((confirmed: any) => {
+       if (confirmed) {
+        this.plannedRoutinesService.deletePlannedRoutine(routine._id).subscribe({
+          next: (res) => {
+            console.log(res);
+            this.getPlannedRoutines();
+          },error: (e) => console.error(e)
+        });
+       }
+     });
   }
 
   completePlannedRoutine(routine : any){

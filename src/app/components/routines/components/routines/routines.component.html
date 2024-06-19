@@ -15,7 +15,9 @@
             <div class="rutina-actions">
               @if (routine._id) {
                 <button class="btn-planificar" (click)="planRoutine(routine._id)">Planificar</button>
-                <button class="btn-eliminar" (click)="deleteRoutine(routine._id)">Eliminar</button>
+                @if(!userId){
+                  <button class="btn-eliminar" (click)="deleteRoutine(routine._id)">Eliminar</button>
+                }
               }
             </div>
           </div>

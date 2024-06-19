@@ -2,16 +2,21 @@
   <h2>Seleccionar Ejercicios</h2>
   <div class="search-container">
     <input type="text" placeholder="Buscar por nombre" (input)="searchExercise($event)" class="search-input" />
-    <button class="filter-button" (click)="filterByMuscle('Tren Superior')">Tren Superior</button>
-    <button class="filter-button" (click)="filterByMuscle('Tren Inferior')">Tren Inferior</button>
-    <button class="filter-button" (click)="clearFilter()">Mostrar Todos</button>
+    <div class="filter-buttons">
+      <button class="filter-button" (click)="filterByMuscle('Tren Superior')">Tren Superior</button>
+      <button class="filter-button" (click)="filterByMuscle('Tren Inferior')">Tren Inferior</button>
+      <button class="filter-button" (click)="filterByMuscle('Core')">Core</button>
+      <button class="filter-button" (click)="clearFilter()">Mostrar Todos</button>
+    </div>
   </div>
+  <p>Seleccionar según orden de ejecución</p>
   <div class="exercises-container">
     <div class="available-exercises">
       <h3>Ejercicios Disponibles</h3>
       <div *ngFor="let exercise of filteredExercises; trackBy: trackById">
         <div class="exercise">
-          <input type="checkbox" class="checkbox-input" (change)="toggleSelection($event, exercise)"> {{ exercise.name }}
+          <input type="checkbox" class="checkbox-input" (change)="toggleSelection($event, exercise)"> 
+          <span class="exercise-name">{{ exercise.name }}</span>
         </div>
       </div>
     </div>
@@ -19,7 +24,7 @@
       <h3>Ejercicios Seleccionados</h3>
       <div *ngFor="let exercise of selectedExercises; trackBy: trackById">
         <div class="exercise">
-          {{ exercise.name }}
+          <span class="exercise-name">{{ exercise.name }}</span>
           <button class="remove-button" (click)="removeSelectedExercise(exercise)">X</button>
         </div>
       </div>

@@ -9,6 +9,7 @@ import { AuthService } from '../../../../core/service/auth.service';
 import { CommonModule } from '@angular/common';
 import { ConfirmModalService } from '../../../../shared/components/confirm-modal/confirm-modal.service';
 import { UserService } from '../../services/user.service';
+import { InformModalService } from '../../../../shared/components/inform-modal/inform-modal.service';
 
 @Component({
   selector: 'app-usuarios',
@@ -37,7 +38,8 @@ export class ListaUsuariosComponent implements OnInit {
     private modalService: NgbModal,
     private router: Router,
     private authService: AuthService,
-    private confirmModalService: ConfirmModalService
+    private confirmModalService: ConfirmModalService,
+    private informModalService : InformModalService
   ) { }
 
   ngOnInit(): void {
@@ -51,12 +53,12 @@ export class ListaUsuariosComponent implements OnInit {
       next: (data) => {
         console.log(data);
         this.usuarios = data;
-        this.filterUsuarios();
+        this.filterUsers();
       }, error: (e) => console.error(e)
     });
   }
 
-  filterUsuarios(): void {
+  filterUsers(): void {
     this.filteredUsuarios = this.usuarios.filter(usuario =>
       usuario.name.toLowerCase().includes(this.filtro.toLowerCase()) ||
       usuario.email.toLowerCase().includes(this.filtro.toLowerCase())
@@ -85,7 +87,7 @@ export class ListaUsuariosComponent implements OnInit {
     this.updatePagination();
   }
 
-  openCrearUsuarioModal(): void {
+  openCreateUserModal(): void {
     const modalRef = this.modalService.open(ModalUsuarioComponent, {
       centered: true,
       size: 'xl'
@@ -100,7 +102,7 @@ export class ListaUsuariosComponent implements OnInit {
     });
   }
 
-  openEditarUsuarioModal(usuario: User) {
+  openEditUserModal(usuario: User) {
     const modalRef = this.modalService.open(ModalUsuarioComponent, { size: 'xl' });
     modalRef.componentInstance.usuario = usuario;
     modalRef.result.then((updatedUser: User) => {
@@ -111,8 +113,8 @@ export class ListaUsuariosComponent implements OnInit {
   }
   
 
-  eliminarUsuario(correoElectronico: string): void {
-    this.confirmModalService.confirm('Confirm Deletion', 'Are you sure you want to delete this user?')
+  deleteUser(correoElectronico: string): void {
+    this.confirmModalService.confirm('Confirmar eliminación', '¿Estás seguro de que quieres eliminar a este usuario?')
       .then((confirmed: any) => {
         if (confirmed) {
           this.usuarioService.deleteUser(correoElectronico).subscribe({
@@ -126,15 +128,13 @@ export class ListaUsuariosComponent implements OnInit {
     
   }
 
-  verRutinas(usuario: User): void {
-    console.log(`Ver rutinas del usuario: ${usuario.name}`);
+  viewUserRoutines(usuario: User): void {
     this.router.navigate([`/usuarios/${usuario._id}/rutinas`]);
   }
 
   isCoordinator(): void {
     this.authService.hasAnyRole(['coordinator']).subscribe({
       next: (data) => {
-        console.log(data);
         this.authorized = data;
       }
     });
@@ -143,7 +143,6 @@ export class ListaUsuariosComponent implements OnInit {
   isMonitor(): void {
     this.authService.hasAnyRole(['monitor']).subscribe({
       next: (data) => {
-        console.log(data);
         this.authorizedToViewRoutines = data;
       }
     });
@@ -153,7 +152,7 @@ export class ListaUsuariosComponent implements OnInit {
 
     this.authService.sendActivationEmail(user._id!).subscribe({
       next: (res) => {
-        alert('Correo de activación enviado');
+        this.informModalService.inform("Activación cuenta","Correo de activación de cuenta enviado al usuario");
       }, error: (e) => console.error(e)
     });
 
@@ -161,7 +160,7 @@ export class ListaUsuariosComponent implements OnInit {
 
   desactiveAccount(user: User){
 
-    this.confirmModalService.confirm('Confirm Deactivation', 'Are you sure you want to deactivate this user?')
+    this.confirmModalService.confirm('Confirmar desactivación', '¿Estás seguro de que quieres desactivar este usuario?')
       .then((confirmed: any) => {
         if (confirmed) {
           this.authService.deactivateAccount(user._id!).subscribe({

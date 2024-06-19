@@ -74,7 +74,6 @@ export class PlanRoutineComponent implements OnInit {
     if (this.routineToPlan?._id) {
       const plannedRoutine: PlannedRoutine = {
         routineId: this.routineToPlan._id,
-        name: this.routineToPlan.name,
         date: new Date(this.date),
         completed: false,
         exercises: this.exercises.map(exercise => ({
@@ -98,20 +97,11 @@ export class PlanRoutineComponent implements OnInit {
         },
         error: async (e) => {
           console.error(e);
-          const errorMessage = this.extractErrorMessages(e.error);
-          await this.informModalService.inform('Error', errorMessage);
+          await this.informModalService.inform('Error', 
+            "Error al planificar la rutina, comprueba si las repeticiones de los ejercicios son mayores que 0 o ya tiemes una rutina planificada para ese dia.");
         }
       });
     }
-  }
-
-  extractErrorMessages(error: any): string {
-    if (error.errors && Array.isArray(error.errors)) {
-      return error.errors.map((err: any) => `${err.msg}`).join(', ');
-    } else if (error){
-      return error.message;
-    }
-    return 'Error desconocido al guardar la rutina. Inténtalo nuevamente.';
   }
 
   addSeries(exercise: ExercisePlan) {

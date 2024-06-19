@@ -42,7 +42,6 @@ export class CalendarioComponent implements OnInit {
     this.plannedRoutinesService.getAllPlannedRoutines().subscribe({
       next: (data: PlannedRoutine[]) => {
         this.plannedRoutines = data;
-        console.log(this.plannedRoutines);
         this.generateCalendar();
       },
       error: (e) => console.error(e)

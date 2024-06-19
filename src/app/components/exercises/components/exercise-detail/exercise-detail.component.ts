@@ -25,9 +25,10 @@ export class ExerciseDetailComponent {
       const exerciseId = params['id'];
       this.exerciseService.getExerciseById(exerciseId).subscribe({
         next: (data) => {
-          data.video = this.getEmbeddedYouTubeUrl(data.video!);
+          if(data.video){
+            data.video = this.getEmbeddedYouTubeUrl(data.video);
+          }
           this.exercise = data;
-          console.log(this.exercise);
         }, 
         error: (e) => console.error(e)
       });

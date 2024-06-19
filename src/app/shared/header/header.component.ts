@@ -26,7 +26,6 @@ export class HeaderComponent {
 
   ngOnInit(): void {
     this.authService.isAuthenticated().subscribe(isAuthenticated => {
-      console.log(isAuthenticated);
       this.isAuthenticated = isAuthenticated;
       if (isAuthenticated) {        
         this.authService.hasAnyRole(['user']).subscribe(isUser => {
@@ -54,7 +53,6 @@ export class HeaderComponent {
         if (confirmed) {
           this.authService.logout().subscribe({
             next: (res) =>{
-              console.log(res);
       
               this.authService.isAuthenticated().subscribe(isAuthenticated => {
                 this.isAuthenticated = isAuthenticated;

@@ -27,7 +27,6 @@ export class SelectExercisesComponent implements OnInit {
       next: (data) => {
         this.availableExercises = data;
         this.filteredExercises = data;
-        console.log(this.availableExercises);
       }
     });
   }
@@ -39,7 +38,7 @@ export class SelectExercisesComponent implements OnInit {
     } else {
       this.selectedExercises = this.selectedExercises.filter(e => e._id !== exercise._id);
       this.filteredExercises.push(exercise);
-      this.filteredExercises.sort((a, b) => a.name.localeCompare(b.name)); // Optional: keep the list sorted
+      this.filteredExercises.sort((a, b) => a.name.localeCompare(b.name));
     }
   }
 
@@ -70,8 +69,7 @@ export class SelectExercisesComponent implements OnInit {
 
   removeSelectedExercise(exercise: Exercise) {
     this.selectedExercises = this.selectedExercises.filter(e => e._id !== exercise._id);
-    this.filteredExercises.push(exercise);
-    this.filteredExercises.sort((a, b) => a.name.localeCompare(b.name)); // Optional: keep the list sorted
+    this.filteredExercises.sort((a, b) => a.name.localeCompare(b.name));
   }
 
   @Output() selectedExercisesEvent = new EventEmitter<Exercise[]>();

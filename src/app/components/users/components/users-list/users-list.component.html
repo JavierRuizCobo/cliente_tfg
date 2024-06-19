@@ -8,7 +8,7 @@
 
   <div class="row mb-4">
     <div class="col-md-4">
-      <input type="text" class="form-control" [(ngModel)]="filtro" (input)="filterUsuarios()" placeholder="Buscar por correo">
+      <input type="text" class="form-control" [(ngModel)]="filtro" (input)="filterUsers()" placeholder="Buscar por correo">
     </div>
     <div class="col-md-4 mb-2">
       <label for="itemsPerPage">Usuarios por página:</label>
@@ -18,7 +18,7 @@
     </div>
     @if (authorized){
       <div class="col-md-4 text-center">
-        <button class="btn btn-primary btn-block" (click)="openCrearUsuarioModal()">Crear usuario</button>
+        <button class="btn btn-primary btn-block" (click)="openCreateUserModal()">Crear usuario</button>
       </div>
     }
     
@@ -32,6 +32,7 @@
           <thead class="thead-dark">
             <tr>
               <th scope="col">Nombre</th>
+              <th scope="col">Apellidos</th>
               <th scope="col">Correo electrónico</th>
               <th scope="col">Rol</th>
               <th scope="col">Activo</th>
@@ -41,6 +42,7 @@
           <tbody>
             <tr *ngFor="let usuario of paginatedUsuarios">
               <td>{{ usuario.name }}</td>
+              <td>{{ usuario.lastName }}</td>
               <td>{{ usuario.email }}</td>
               <td>{{ usuario.role }}</td>
               <td>{{ usuario.active ? 'Sí' : 'No' }}</td>
@@ -48,11 +50,11 @@
                 @if (authorized) {
                   <td><button *ngIf="!usuario.active" class="btn btn-sm btn-success" (click)="activeAccount(usuario)">Activar</button></td>
                   <td><button *ngIf="usuario.active" class="btn btn-sm btn-warning" (click)="desactiveAccount(usuario)">Desactivar</button></td>
-                  <td><button class="btn btn-sm btn-warning" (click)="openEditarUsuarioModal(usuario)">Editar</button></td>
-                  <td><button class="btn btn-sm btn-danger" (click)="eliminarUsuario(usuario._id!)">Eliminar</button></td>
+                  <td><button class="btn btn-sm btn-warning" (click)="openEditUserModal(usuario)">Editar</button></td>
+                  <td><button class="btn btn-sm btn-danger" (click)="deleteUser(usuario._id!)">Eliminar</button></td>
                 }
                 @if(authorizedToViewRoutines && usuario.role === 'user') {
-                  <td><button class="btn btn-sm btn-info" (click)="verRutinas(usuario)">Ver Rutinas</button></td>
+                  <td><button class="btn btn-sm btn-info" (click)="viewUserRoutines(usuario)">Ver Rutinas</button></td>
                 } @else if(authorizedToViewRoutines) {
                   <td>No disponible</td>
                 }
