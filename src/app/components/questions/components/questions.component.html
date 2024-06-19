@@ -1,0 +1,21 @@
+<div class="container">
+<form [formGroup]="mailForm" (ngSubmit)="onSubmit()">
+  <div>
+    <label for="userSubject">Asunto:</label>
+    <input id="userSubject" formControlName="userSubject" type="text" />
+    <div *ngIf="mailForm?.get('userSubject')?.invalid && (mailForm?.get('userSubject')?.dirty || mailForm?.get('userSubject')?.touched)">
+      <small *ngIf="mailForm?.get('userSubject')?.errors?.['userSubject']">El campo Asunto es requerido.</small>
+    </div>
+  </div>
+
+  <div>
+    <label for="userMessage">Mensaje:</label>
+    <textarea id="userMessage" formControlName="userMessage"></textarea>
+    <div *ngIf="mailForm?.get('userMessage')?.invalid && (mailForm?.get('userMessage')?.dirty || mailForm?.get('userMessage')?.touched)">
+      <small *ngIf="mailForm?.get('userMessage')?.errors?.['userMessage']">El campo Mensaje es requerido.</small>
+    </div>
+  </div>
+
+  <button type="submit" [disabled]="mailForm.invalid">Enviar</button>
+</form>
+</div>

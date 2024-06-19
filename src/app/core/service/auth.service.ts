@@ -14,7 +14,7 @@ export class AuthService {
 
 
   isAuthenticated(): Observable<boolean> {
-    return this.http.get<{ authenticated: boolean }>(`${this.apiUrl}/esta-autenticado`).pipe(
+    return this.http.get<{ authenticated: boolean }>(`${this.apiUrl}/is-authenticated`).pipe(
       tap(response => {
         console.log('Respuesta de autenticación:', response);
       }),
@@ -26,44 +26,38 @@ export class AuthService {
     );
   }
 
-  hasRole(role: string): Observable<boolean> {
-    return this.http.get<{ authorized: boolean }>(`${this.apiUrl}/rol/${role}`).pipe(
-      map(response => response.authorized),
-      catchError(() => of(false))
-    );
-  }
 
   hasAnyRole(roles: string[]): Observable<boolean> {
 
     const rolesParam = roles.join(',');
-    return this.http.get<{ authorized: boolean }>(`${this.apiUrl}/comprobar-roles?roles=${rolesParam}`).pipe(
+    return this.http.get<{ authorized: boolean }>(`${this.apiUrl}/check-roles?roles=${rolesParam}`).pipe(
       map(response => response.authorized),
       catchError(() => of(false))
     );
   }
 
   login(email: string, password: string): Observable<any> {
-    return this.http.post(`${this.apiUrl}/iniciar-sesion`, { email, password }, { withCredentials: true })
+    return this.http.post(`${this.apiUrl}/login`, { email, password }, { withCredentials: true })
       .pipe(tap((response: any) => {
         console.log('Login response:', response);
       }));
   }
 
   activateAccount(token: string, email: string, password: string): Observable<any> {
-    return this.http.post<any>(`${this.apiUrl}/activar-cuenta`, { token, email, password });
+    return this.http.post<any>(`${this.apiUrl}/activate-account`, { token, email, password });
   }
 
   deactivateAccount(userId: string): Observable<any> {
-    return this.http.post<any>(`${this.apiUrl}/desactivar-cuenta`, { userId });
+    return this.http.post<any>(`${this.apiUrl}/desactivate-account`, { userId });
   }
 
   sendActivationEmail(userId: string): Observable<any> {
-    return this.http.post<any>(`${this.apiUrl}/enviar-correo-activacion`, { userId });
+    return this.http.post<any>(`${this.apiUrl}/send-activation-email`, { userId });
   }
 
 
   logout(): Observable<void> {
-    return this.http.post<void>(`${this.apiUrl}/cerrar-sesion`, null);
+    return this.http.post<void>(`${this.apiUrl}/logout`, null);
   }
 
 }

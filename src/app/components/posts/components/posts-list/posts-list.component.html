@@ -20,7 +20,7 @@
     <div class="pagination-container">
         <div class="posts-per-page">
             <label for="postsPerPage">Posts por página:</label>
-            <input type="number" id="postsPerPage" name="postsPerPage" [(ngModel)]="postsPerPage" min="1" max="5"  (change)="changePostsPerPage()">
+            <input type="number" id="postsPerPage" name="postsPerPage" [(ngModel)]="postsPerPage" min="1" max="5" (change)="changePostsPerPage()">
         </div>
         <div class="pagination">
             <button [disabled]="currentPage === 1" (click)="prevPage()">Anterior</button>

@@ -23,8 +23,8 @@ export class RequestRoutineComponent {
 
   onSubmit() {
     if (this.form.valid) {
-      const { user, experience, details } = this.form.value;
-      this.routineService.sendRoutineRequestMail(user, experience, details).subscribe(
+      const { experience, details } = this.form.value;
+      this.routineService.sendRoutineRequestMail(experience, details).subscribe(
         response => {
           console.log('Correo enviado con éxito', response);
           this.activeModal.close();

@@ -31,7 +31,7 @@ export class RoutinesService {
     return this.http.delete<void>(`${this.apiUrl}/${id}`);
   }
 
-  sendRoutineRequestMail(user: string, experiencia: string, detalles: string): Observable<any> {
-    return this.http.post<any>(`${this.apiUrl}/send-routine-request`, { user, experiencia, detalles });
+  sendRoutineRequestMail(experiencia: string, detalles: string): Observable<any> {
+    return this.http.post<any>(`${this.apiUrl}/send-routine-request`, {experiencia, detalles });
   }
 }

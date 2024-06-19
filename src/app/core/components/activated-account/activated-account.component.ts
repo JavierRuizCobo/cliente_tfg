@@ -1,7 +1,6 @@
 import { Component } from '@angular/core';
 import { AuthService } from '../../service/auth.service';
 import { ActivatedRoute, Router } from '@angular/router';
-import { HttpClient } from '@angular/common/http';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 
@@ -41,7 +40,6 @@ export class ActivatedAccountComponent {
       this.authService.activateAccount(this.activationToken, this.email, this.password).subscribe({
         next: (res) =>{
           this.message = 'Cuenta activada con éxito.';
-          // Puedes redirigir al usuario a la página de login o a otra página
           setTimeout(() => {
             this.router.navigate(['/login']);
           }, 3000);
@@ -50,9 +48,7 @@ export class ActivatedAccountComponent {
         error: (error) =>{
           console.error(error);
           this.message = 'Error al activar la cuenta: ' + error.error.message;
-
         } 
-        
       }       
       );
     } else {

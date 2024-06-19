@@ -94,6 +94,11 @@ export class PostListsComponent {
   }
 
   changePostsPerPage(): void {
+    if (this.postsPerPage < 1) {
+      this.postsPerPage = 1;
+    } else if (this.postsPerPage > 5) {
+      this.postsPerPage = 5;
+    }
     this.currentPage = 1;
   }
 

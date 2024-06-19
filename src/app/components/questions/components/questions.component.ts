@@ -9,8 +9,8 @@ import { InformModalService } from '../../../shared/components/inform-modal/info
   selector: 'app-sugerencia-pregunta',
   standalone: true,
   imports: [CommonModule, ReactiveFormsModule],
-  templateUrl: './sugerencia-pregunta.component.html',
-  styleUrls: ['./sugerencia-pregunta.component.css']
+  templateUrl: './questions.component.html',
+  styleUrls: ['./questions.component.css']
 })
 
 export class SugerenciaPreguntaComponent {
@@ -22,8 +22,8 @@ export class SugerenciaPreguntaComponent {
     private confirmModalService : ConfirmModalService,
     private informModalService: InformModalService) {
     this.mailForm = this.formBuilder.group({
-      subject: ['', Validators.required],
-      message: ['', Validators.required]
+      userSubject: ['', Validators.required],
+      userMessage: ['', Validators.required]
     });
   }
 
@@ -39,7 +39,7 @@ export class SugerenciaPreguntaComponent {
               this.informModalService.inform('Éxito', 'Correo enviado exitosamente');
               this.mailForm.reset();
             },
-            error: (e) => console.error(e)
+            error: (e) => this.informModalService.inform('Error', 'El correo no se ha podido enviar')
           });
         }
       });

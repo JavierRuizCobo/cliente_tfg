@@ -27,7 +27,7 @@ export const routes: Routes = [
   },
   { 
     path: 'sugerencia', 
-    loadComponent: () => import('./components/sugerencia-pregunta/components/sugerencia-pregunta.component').then(m => m.SugerenciaPreguntaComponent),
+    loadComponent: () => import('./components/questions/components/questions.component').then(m => m.SugerenciaPreguntaComponent),
     canActivate: [AuthGuard, MultiRoleGuard],
     data: { roles: ['user']}
 

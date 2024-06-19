@@ -26,12 +26,9 @@ export class HeaderComponent {
 
   ngOnInit(): void {
     this.authService.isAuthenticated().subscribe(isAuthenticated => {
-      console.log("Headerrrr");
       console.log(isAuthenticated);
       this.isAuthenticated = isAuthenticated;
-      if (isAuthenticated) {
-        console.log("Headerrrr")
-        
+      if (isAuthenticated) {        
         this.authService.hasAnyRole(['user']).subscribe(isUser => {
           this.isUser = isUser;
         });

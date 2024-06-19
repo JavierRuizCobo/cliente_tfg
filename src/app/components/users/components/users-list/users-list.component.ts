@@ -30,7 +30,7 @@ export class ListaUsuariosComponent implements OnInit {
   totalPages: number = 0;
   paginatedUsuarios: User[] = [];
 
-  itemsPerPageOptions: number[] = [2, 10, 15, 20];
+  itemsPerPageOptions: number[] = [5, 10, 15, 20];
 
   constructor(
     private usuarioService: UserService,
