@@ -70,6 +70,21 @@ nav {
   transform: scale(1, 1);
 }
 
+.logout-button {
+  background-color: transparent;
+  border: none;
+  color: #fff;
+  font-size: 17px;
+  font-weight: 500;
+  padding: 7px 15px;
+  cursor: pointer;
+  transition: opacity 0.2s ease-in-out;
+}
+
+.logout-button:hover {
+  opacity: 0.6;
+}
+
 /* Media query para pantallas pequeñas */
 @media only screen and (max-width: 950px) {
   .menu {

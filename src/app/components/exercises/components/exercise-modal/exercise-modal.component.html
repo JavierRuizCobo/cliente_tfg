@@ -1,0 +1,46 @@
+<div class="modal-container modal-ancho p-4">
+  <h2 class="text-center mb-4">{{ exercise ? 'Editar Ejercicio' : 'Crear Ejercicio' }}</h2>
+  <form #form="ngForm" (ngSubmit)="addExercise(form)">
+    <div class="row g-3">
+      <div class="col-md-6">
+        <div class="mb-3">
+          <label for="name" class="form-label">Nombre del ejercicio</label>
+          <input type="text" class="form-control" id="name" name="name" [(ngModel)]="newExercise.name" required>
+        </div>
+        <div class="mb-3">
+          <label for="video" class="form-label">Enlace de Video de YouTube</label>
+          <input type="url" class="form-control" id="video" name="video" [(ngModel)]="newExercise.video" required (input)="onYouTubeLinkChange()">
+        </div>
+        <div *ngIf="videoPreviewUrl" class="video-preview mt-3">
+          <iframe [src]="videoPreviewUrl" width="50%" height="150" frameborder="0" allowfullscreen></iframe>
+        </div>
+      </div>
+      <div class="col-md-6">
+        <div class="mb-3">
+          <label for="difficulty" class="form-label">Dificultad</label>
+          <select class="form-select" id="difficulty" name="difficulty" [(ngModel)]="newExercise.difficulty" required>
+            <option value="Fácil">Fácil</option>
+            <option value="Media">Media</option>
+            <option value="Difícil">Difícil</option>
+          </select>
+        </div>
+        <div class="mb-3">
+          <label for="muscles" class="form-label">Grupo Muscular</label>
+          <select class="form-select" id="muscles" name="muscles" [(ngModel)]="newExercise.muscles" required>
+            <option value="Tren Superior">Tren Superior</option>
+            <option value="Tren Inferior">Tren Inferior</option>
+            <option value="Core">Core</option>
+          </select>
+        </div>
+      </div>
+    </div>
+    <div class="mb-3">
+      <label for="description" class="form-label">Descripción</label>
+      <textarea class="form-control" id="description" name="description" rows="3" [(ngModel)]="newExercise.description" required></textarea>
+    </div>
+    <div class="d-flex justify-content-end">
+      <button type="button" class="btn btn-secondary me-2" (click)="closeModal()">Cancelar</button>
+      <button type="submit" class="btn btn-primary">{{ exercise ? 'Guardar Cambios' : 'Agregar' }}</button>
+    </div>
+  </form>
+</div>

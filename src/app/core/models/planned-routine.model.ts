@@ -1,10 +1,9 @@
-import { Exercise } from "./ejercicio.model";
+import { Exercise } from "./exercise.model";
 
 export interface PlannedRoutine {
-  id?: string;
+  _id?: string;
   routineId: string;
   name: string;
-  notes: string;
   date: Date;
   completed: boolean;
   exercises: {

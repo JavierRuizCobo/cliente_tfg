@@ -1,0 +1,32 @@
+<div class="container">
+    <h2>Ejercicios</h2>
+    @if (isCoordinatorOrMonitor) {
+        <div class="create-btn-container">
+            <button class="create-btn" (click)="openCreateExerciseModal()">Crear Ejercicio</button>
+        </div>
+    }
+
+    <div class="filter-section">
+        <input type="text" placeholder="Buscar por nombre..." [(ngModel)]="searchTerm" (input)="filterExercises()" />
+        <div class="filter-btns">
+            <button class="filter-btn" (click)="difficultyFilter = 'all'; filterExercises()">Todas</button>
+            <button class="filter-btn" (click)="difficultyFilter = 'Fácil'; filterExercises()">Fácil</button>
+            <button class="filter-btn" (click)="difficultyFilter = 'Media'; filterExercises()">Media</button>
+            <button class="filter-btn" (click)="difficultyFilter = 'Difícil'; filterExercises()">Difícil</button>
+        </div>
+    </div>
+
+    <div class="exercise-list">
+        @for (exercise of filteredExercises; track $index) {
+            <div class="exercise" (click)="viewExercise(exercise)">
+                <strong>Nombre:</strong> {{ exercise.name }}<br>
+                <strong>Dificultad:</strong> {{ exercise.difficulty }}<br>
+                <strong>Grupo Muscular:</strong> {{ exercise.muscles }}<br><br>
+                @if (isCoordinatorOrMonitor) {
+                    <button class="edit-btn" (click)="editExercise(exercise); $event.stopPropagation()">Editar</button>
+                    <button class="delete-btn" (click)="deleteExercise(exercise); $event.stopPropagation()">Eliminar</button>
+                }
+            </div>
+        }
+    </div>
+</div>
